@@ -3,7 +3,9 @@ import html2canvas from 'html2canvas';
 import { parseTeam } from './utils/parseTeam';
 import { loadImageAsDataUrl, fetchPokemonSprite, getTypeIconUrl } from './utils/imageUtils';
 import { Header, TeamInput, TeraList } from './components';
+import type { ViewMode } from './components';
 import type { PokemonWithSprite } from './types';
+import { useTheme } from './context/ThemeContext';
 import './App.css';
 
 function App() {
@@ -11,7 +13,9 @@ function App() {
   const [parsedTeam, setParsedTeam] = useState<PokemonWithSprite[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>('list');
   const teraListRef = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
 
   const handleGenerate = async () => {
     const team = parseTeam(teamText);
@@ -65,11 +69,17 @@ function App() {
     setShowResults(false);
   };
 
+  const handleViewToggle = () => {
+    setViewMode((prev) => (prev === 'list' ? 'grid' : 'list'));
+  };
+
   const handleDownload = async (format: 'png' | 'jpg') => {
     if (!teraListRef.current) return;
 
+    const backgroundColor = theme === 'dark' ? '#1a1a1a' : '#ffffff';
+
     const canvas = await html2canvas(teraListRef.current, {
-      backgroundColor: '#1a1a1a',
+      backgroundColor,
       scale: 2,
     });
 
@@ -98,6 +108,8 @@ function App() {
             ref={teraListRef}
             team={parsedTeam}
             isLoading={isLoading}
+            viewMode={viewMode}
+            onViewToggle={handleViewToggle}
             onDownload={handleDownload}
           />
         )}
