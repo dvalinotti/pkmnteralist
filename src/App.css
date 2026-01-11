@@ -5,8 +5,15 @@
 }
 
 .header {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.header-content {
+  text-align: left;
 }
 
 .header h1 {
@@ -19,8 +26,27 @@
 }
 
 .subtitle {
-  color: #888;
+  color: var(--text-muted);
   font-size: 1.1rem;
+}
+
+.theme-toggle {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background-color: var(--btn-secondary-bg-hover);
+  border-color: var(--border-color-hover);
 }
 
 .main {
@@ -39,10 +65,10 @@
   width: 100%;
   min-height: 200px;
   padding: 1rem;
-  border: 2px solid #333;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
-  background-color: #1a1a1a;
-  color: #fff;
+  background-color: var(--bg-input);
+  color: var(--text-primary);
   font-family: "Courier New", monospace;
   font-size: 0.9rem;
   resize: vertical;
@@ -55,7 +81,7 @@
 }
 
 .team-input::placeholder {
-  color: #666;
+  color: var(--text-placeholder);
 }
 
 .button-group {
@@ -88,8 +114,8 @@
 
 .clear-btn {
   background-color: transparent;
-  color: #888;
-  border: 2px solid #444;
+  color: var(--text-muted);
+  border: 2px solid var(--border-color-hover);
   padding: 0.8rem 2rem;
   font-size: 1rem;
   font-weight: 600;
@@ -99,15 +125,15 @@
 }
 
 .clear-btn:hover {
-  border-color: #666;
-  color: #fff;
+  border-color: var(--text-muted);
+  color: var(--text-primary);
 }
 
 .results-section {
-  background-color: #1a1a1a;
+  background-color: var(--bg-secondary);
   border-radius: 12px;
   padding: 1.5rem;
-  border: 1px solid #333;
+  border: 1px solid var(--border-color);
 }
 
 .results-header {
@@ -130,9 +156,9 @@
 }
 
 .download-btn {
-  background-color: #2a2a2a;
-  color: #ddd;
-  border: 1px solid #444;
+  background-color: var(--btn-secondary-bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color-hover);
   padding: 0.5rem 1rem;
   font-size: 0.85rem;
   font-weight: 500;
@@ -142,18 +168,18 @@
 }
 
 .download-btn:hover {
-  background-color: #3a3a3a;
+  background-color: var(--btn-secondary-bg-hover);
   border-color: #667eea;
 }
 
 .no-results,
 .loading {
   text-align: center;
-  color: #888;
+  color: var(--text-muted);
 }
 
 .placeholder {
-  background-color: #333;
+  background-color: var(--placeholder-bg);
   border-radius: 4px;
 }
 
@@ -162,7 +188,7 @@
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem;
-  background-color: #1a1a1a;
+  background-color: var(--bg-secondary);
   border-radius: 8px;
   max-width: 400px;
   margin: 0 auto;
@@ -173,9 +199,9 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.4rem 0.75rem;
-  background-color: #242424;
+  background-color: var(--bg-tertiary);
   border-radius: 8px;
-  border: 1px solid #333;
+  border: 1px solid var(--border-color);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -195,7 +221,7 @@
 .pokemon-name {
   font-size: 1rem;
   font-weight: 500;
-  color: #ddd;
+  color: var(--text-secondary);
   flex: 1;
 }
 
@@ -223,6 +249,22 @@
 @media (max-width: 600px) {
   .app {
     padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-content {
+    text-align: center;
+  }
+
+  .theme-toggle {
+    align-self: flex-end;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
   }
 
   .header h1 {
