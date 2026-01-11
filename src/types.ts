@@ -3,6 +3,11 @@ export interface Pokemon {
   teraType: string;
 }
 
+export interface PokemonWithSprite extends Pokemon {
+  spriteDataUrl: string;
+  typeIconDataUrl: string | null;
+}
+
 export const TERA_TYPES = [
   'Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice',
   'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug',
