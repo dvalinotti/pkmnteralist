@@ -1,0 +1,568 @@
+Landorus @ Choice Scarf  
+Ability: Intimidate  
+Tera Type: Flying  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Earthquake  
+- U-turn  
+- Stone Edge  
+- Superpower  
+
+Landorus-Therian @ Choice Scarf  
+Ability: Intimidate  
+Tera Type: Flying  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Earthquake  
+- U-turn  
+- Stone Edge  
+- Superpower  
+
+Tornadus @ Heavy-Duty Boots  
+Ability: Regenerator  
+Tera Type: Ground  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Hurricane  
+- Knock Off  
+- U-turn  
+- Heat Wave  
+
+Tornadus-Therian @ Heavy-Duty Boots  
+Ability: Regenerator  
+Tera Type: Ground  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Hurricane  
+- Knock Off  
+- U-turn  
+- Heat Wave  
+
+Thundurus @ Life Orb  
+Ability: Prankster  
+Tera Type: Flying  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Thunderbolt  
+- Focus Blast  
+- Nasty Plot  
+- Thunder Wave  
+
+Thundurus-Therian @ Life Orb  
+Ability: Prankster  
+Tera Type: Flying  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Thunderbolt  
+- Focus Blast  
+- Nasty Plot  
+- Thunder Wave  
+
+Rotom @ Leftovers  
+Ability: Levitate  
+Tera Type: Water  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
+- Volt Switch  
+- Hydro Pump  
+- Will-O-Wisp  
+- Pain Split  
+
+Rotom-Wash @ Leftovers  
+Ability: Levitate  
+Tera Type: Water  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
+- Volt Switch  
+- Hydro Pump  
+- Will-O-Wisp  
+- Pain Split  
+
+Rotom-Heat @ Choice Scarf  
+Ability: Levitate  
+Tera Type: Fire  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Overheat  
+- Volt Switch  
+- Trick  
+- Will-O-Wisp  
+
+Rotom-Mow @ Choice Scarf  
+Ability: Levitate  
+Tera Type: Fire  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Overheat  
+- Volt Switch  
+- Trick  
+- Will-O-Wisp  
+
+Rotom-Frost @ Choice Scarf  
+Ability: Levitate  
+Tera Type: Fire  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Overheat  
+- Volt Switch  
+- Trick  
+- Will-O-Wisp  
+
+Deoxys  
+Ability: Pressure  
+Tera Type: Psychic  
+
+Deoxys-Attack
+Ability: Pressure  
+Tera Type: Psychic  
+
+Deoxys-Defense
+Ability: Pressure  
+Tera Type: Psychic  
+
+Deoxys-Speed
+Ability: Pressure  
+Tera Type: Psychic  
+
+Shaymin @ Choice Scarf  
+Ability: Serene Grace  
+Tera Type: Flying  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Seed Flare  
+- Air Slash  
+- Earth Power  
+- Healing Wish  
+
+Shaymin-Sky @ Choice Scarf  
+Ability: Serene Grace  
+Tera Type: Flying  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Seed Flare  
+- Air Slash  
+- Earth Power  
+- Healing Wish  
+
+Giratina @ Griseous Core  
+Ability: Levitate  
+Tera Type: Ghost  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Shadow Force  
+- Dragon Tail  
+- Will-O-Wisp  
+- Defog  
+
+Giratina-Origin @ Griseous Core  
+Ability: Levitate  
+Tera Type: Ghost  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Shadow Force  
+- Dragon Tail  
+- Will-O-Wisp  
+- Defog  
+
+Kyurem-Black @ Choice Band  
+Ability: Teravolt  
+Tera Type: Ice  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Icicle Spear  
+- Fusion Bolt  
+- Dragon Claw  
+- Ice Shard  
+
+Kyurem-White @ Choice Specs  
+Ability: Turboblaze  
+Tera Type: Ice  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Ice Beam  
+- Fusion Flare  
+- Draco Meteor  
+- Earth Power  
+
+Hoopa-Unbound @ Choice Band  
+Ability: Magician  
+Tera Type: Dark  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Hyperspace Fury  
+- Gunk Shot  
+- Drain Punch  
+- Zen Headbutt  
+
+Lycanroc-Dusk @ Focus Sash  
+Ability: Tough Claws  
+Tera Type: Ghost  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Accelerock  
+- Close Combat  
+- Swords Dance  
+- Stone Edge  
+
+Necrozma-Dusk-Mane @ Weakness Policy  
+Ability: Prism Armor  
+Tera Type: Fairy  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Sunsteel Strike  
+- Earthquake  
+- Dragon Dance  
+- Photon Geyser  
+
+Urshifu-Rapid-Strike @ Choice Band  
+Ability: Unseen Fist  
+Tera Type: Water  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Surging Strikes  
+- Close Combat  
+- Aqua Jet  
+- U-turn  
+
+Urshifu @ Choice Band  
+Ability: Unseen Fist  
+Tera Type: Dark  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Wicked Blow  
+- Close Combat  
+- Sucker Punch  
+- U-turn  
+
+Calyrex-Shadow @ Choice Specs  
+Ability: As One (Spectrier)  
+Tera Type: Ghost  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Astral Barrage  
+- Psyshock  
+- Draining Kiss  
+- Trick  
+
+Calyrex-Ice @ Choice Band  
+Ability: As One (Glastrier)  
+Tera Type: Ice  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Brave Nature  
+IVs: 0 Spe  
+- Glacial Lance  
+- High Horsepower  
+- Close Combat  
+- Trick Room  
+
+Ogerpon @ Wellspring Mask  
+Ability: Water Absorb  
+Tera Type: Water  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Ivy Cudgel  
+- Horn Leech  
+- U-turn  
+- Spiky Shield  
+
+Ogerpon-Wellspring @ Wellspring Mask  
+Ability: Water Absorb  
+Tera Type: Water  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Ivy Cudgel  
+- Horn Leech  
+- U-turn  
+- Spiky Shield  
+
+Ogerpon-Hearthflame @ Hearthflame Mask  
+Ability: Mold Breaker  
+Tera Type: Fire  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Ivy Cudgel  
+- Horn Leech  
+- U-turn  
+- Spiky Shield  
+
+Ogerpon-Cornerstone @ Cornerstone Mask  
+Ability: Sturdy  
+Tera Type: Rock  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Ivy Cudgel  
+- Horn Leech  
+- U-turn  
+- Spiky Shield  
+
+Darmanitan @ Choice Scarf  
+Ability: Gorilla Tactics  
+Tera Type: Ice  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Icicle Crash  
+- Flare Blitz  
+- U-turn  
+- Earthquake  
+
+Darmanitan-Galar @ Choice Scarf  
+Ability: Gorilla Tactics  
+Tera Type: Ice  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Icicle Crash  
+- Flare Blitz  
+- U-turn  
+- Earthquake  
+
+Indeedee-F (F)  
+Ability: Own Tempo  
+Tera Type: Psychic  
+
+Indeedee (M)  
+Ability: Own Tempo  
+Tera Type: Psychic  
+
+Meowstic @ Light Clay  
+Ability: Prankster  
+Tera Type: Psychic  
+EVs: 252 HP / 4 SpA / 252 Spe  
+Timid Nature  
+- Light Screen  
+- Reflect  
+- Thunder Wave  
+- Psychic  
+
+Meowstic-F (F)  
+Ability: Keen Eye  
+Tera Type: Psychic  
+
+Toxtricity @ Throat Spray  
+Ability: Punk Rock  
+Tera Type: Electric  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Boomburst  
+- Overdrive  
+- Sludge Wave  
+- Volt Switch  
+
+Toxtricity-Low-Key @ Throat Spray  
+Ability: Punk Rock  
+Tera Type: Electric  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Boomburst  
+- Overdrive  
+- Sludge Wave  
+- Volt Switch  
+
+Wormadam-Sandy @ Leftovers  
+Ability: Overcoat  
+Tera Type: Ground  
+EVs: 252 HP / 252 Def / 4 SpD  
+Bold Nature  
+- Stealth Rock  
+- Earthquake  
+- Toxic  
+- Protect  
+
+Wormadam-Trash @ Rocky Helmet  
+Ability: Overcoat  
+Tera Type: Steel  
+EVs: 252 HP / 252 Def / 4 SpD  
+Bold Nature  
+- Stealth Rock  
+- Gyro Ball  
+- Toxic  
+- Protect  
+
+Enamorus-Therian @ Choice Specs  
+Ability: Overcoat  
+Tera Type: Fairy  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Moonblast  
+- Earth Power  
+- Mystical Fire  
+- Psychic  
+
+Terapagos-Stellar @ Leftovers  
+Ability: Tera Shift  
+Tera Type: Stellar  
+EVs: 252 HP / 252 SpA / 4 SpD  
+Modest Nature  
+- Tera Starstorm  
+- Earth Power  
+- Shadow Ball  
+- Calm Mind  
+
+Palafin-Hero @ Choice Band  
+Ability: Zero to Hero  
+Tera Type: Water  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Jet Punch  
+- Wave Crash  
+- Close Combat  
+- Flip Turn  
+
+Morpeko  
+Ability: Hunger Switch  
+Level: 50  
+Tera Type: Electric  
+
+Morpeko-Hangry  
+Ability: Hunger Switch  
+Level: 50  
+Tera Type: Electric  
+
+Terapagos  
+Ability: Tera Shift  
+Level: 50  
+Tera Type: Stellar  
+
+Terapagos-Terastal  
+Ability: Tera Shell  
+Level: 50  
+Tera Type: Stellar  
+
+Wormadam (F)  
+Ability: Anticipation  
+Level: 50  
+Tera Type: Bug  
+
+Dialga  
+Ability: Pressure  
+Level: 50  
+Tera Type: Steel  
+
+Dialga-Origin @ Adamant Crystal  
+Ability: Pressure  
+Level: 50  
+Tera Type: Steel  
+
+Palkia  
+Ability: Pressure  
+Level: 50  
+Tera Type: Water  
+
+Palkia-Origin @ Lustrous Globe  
+Ability: Pressure  
+Level: 50  
+Tera Type: Water  
+
+Tauros (M)  
+Ability: Intimidate  
+Level: 50  
+Tera Type: Normal  
+
+Tauros-Paldea-Aqua (M)  
+Ability: Intimidate  
+Level: 50  
+Tera Type: Fighting  
+
+Tauros-Paldea-Blaze (M)  
+Ability: Intimidate  
+Level: 50  
+Tera Type: Fighting  
+
+Tauros-Paldea-Combat (M)  
+Ability: Intimidate  
+Level: 50  
+Tera Type: Fighting  
+
+Kyogre  
+Ability: Drizzle  
+Level: 50  
+Tera Type: Water  
+
+Kyogre-Primal @ Blue Orb  
+Ability: Primordial Sea  
+Level: 50  
+Tera Type: Water  
+
+Wishiwashi  
+Ability: Schooling  
+Level: 50  
+Tera Type: Water  
+
+Wishiwashi-School  
+Ability: Schooling  
+Level: 50  
+Tera Type: Water  
+
+Necrozma  
+Ability: Prism Armor  
+Level: 50  
+Tera Type: Psychic  
+
+Necrozma-Dusk-Mane  
+Ability: Prism Armor  
+Level: 50  
+Tera Type: Psychic  
+
+Necrozma-Ultra @ Ultranecrozium Z  
+Ability: Neuroforce  
+Level: 50  
+Tera Type: Psychic  
+
+Keldeo  
+Ability: Justified  
+Tera Type: Water  
+
+Keldeo-Resolute  
+Ability: Justified  
+Tera Type: Water  
+
+Castform  
+Ability: Forecast  
+Tera Type: Normal  
+
+Castform-Rainy  
+Ability: Forecast  
+Tera Type: Water  
+
+Oricorio  
+Ability: Dancer  
+Tera Type: Fire  
+
+Oricorio-Pa'u  
+Ability: Dancer  
+Tera Type: Psychic
+
+Oricorio-Pom-Pom  
+Ability: Dancer  
+Tera Type: Electric  
+
+Oricorio-Sensu
+Ability: Dancer  
+Tera Type: Ghost
+
+Lycanroc @ Air Balloon  
+Ability: Keen Eye  
+Tera Type: Rock  
+
+Lycanroc-Dusk  
+Ability: Tough Claws  
+Tera Type: Rock  
+
+Lycanroc-Midnight  
+Ability: Keen Eye  
+Tera Type: Rock  
+
+Zacian  
+Ability: Intrepid Sword  
+Tera Type: Fairy  
+
+Zacian-Crowned @ Rusted Sword  
+Ability: Intrepid Sword  
+Tera Type: Fairy  
+
+Zamazenta  
+Ability: Dauntless Shield  
+Tera Type: Fighting
+
+Zamazenta-Crowned @ Rusted Sword  
+Ability: Intrepid Sword  
+Tera Type: Fairy  
