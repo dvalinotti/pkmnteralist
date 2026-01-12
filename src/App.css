@@ -43,6 +43,10 @@
   flex-shrink: 0;
 }
 
+.icon-button > a {
+  height: 24px;
+}
+
 .theme-toggle {
   margin-left: auto;
   margin-right: 1rem;
