@@ -9,7 +9,6 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 2rem;
-  gap: 1rem;
 }
 
 .header-content {
@@ -30,7 +29,7 @@
   font-size: 1.1rem;
 }
 
-.theme-toggle {
+.icon-button {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -42,6 +41,15 @@
   justify-content: center;
   transition: background-color 0.2s, border-color 0.2s;
   flex-shrink: 0;
+}
+
+.theme-toggle {
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.github-icon {
+  fill: var(--text-secondary);
 }
 
 .theme-toggle:hover {
@@ -322,6 +330,26 @@
 .tera-card .type-icon {
   height: 14px;
   width: 14px;
+}
+
+.footer {
+  width: 100%;
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.95rem;
+  border-top: 1px solid var(--footer-border);
+  background: var(--footer-bg);
+  color: var(--footer-color);
+}
+
+.footer a {
+  color: var(--footer-link);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {
