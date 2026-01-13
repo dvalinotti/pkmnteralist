@@ -6,22 +6,25 @@ interface TeamInputProps {
   onGenerate: () => void;
   onClear: () => void;
   isLoading: boolean;
+  error?: string | null;
 }
 
-const PLACEHOLDER_TEXT = `Paste your Pokemon Showdown team here...
+const PLACEHOLDER_TEXT = `Paste your Pokemon Showdown team or a Pokepaste URL...
 
-Example:
-Pikachu @ Light Ball
-Ability: Static
-Tera Type: Electric
-EVs: 252 SpA / 4 SpD / 252 Spe
-Timid Nature
-- Thunderbolt
-- Surf
-- Grass Knot
-- Volt Switch`;
+Examples:
+  https://pokepast.es/abc123
 
-export function TeamInput({ value, onChange, onGenerate, onClear, isLoading }: TeamInputProps) {
+  Pikachu @ Light Ball
+  Ability: Static
+  Tera Type: Electric
+  EVs: 252 SpA / 4 SpD / 252 Spe
+  Timid Nature
+  - Thunderbolt
+  - Surf
+  - Grass Knot
+  - Volt Switch`;
+
+export function TeamInput({ value, onChange, onGenerate, onClear, isLoading, error }: TeamInputProps) {
   return (
     <div className={styles.inputSection}>
       <textarea
@@ -30,6 +33,7 @@ export function TeamInput({ value, onChange, onGenerate, onClear, isLoading }: T
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
+      {error && <p className={styles.importError}>{error}</p>}
       <div className={styles.buttonGroup}>
         <button
           className={styles.generateBtn}

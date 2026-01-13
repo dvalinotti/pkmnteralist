@@ -4,6 +4,15 @@
   gap: 1rem;
 }
 
+.importError {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(229, 62, 62, 0.1);
+  border-radius: 6px;
+}
+
 .teamInput {
   width: 100%;
   min-height: 200px;

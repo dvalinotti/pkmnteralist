@@ -7,6 +7,7 @@ import {
   getTypeIconUrl,
   getItemSpriteUrl,
 } from "./utils/imageUtils";
+import { isPokepastUrl, fetchPokepaste } from "./utils/pokepaste";
 import { Header, TeamInput, TeraList } from "./components";
 import type { ViewMode } from "./components";
 import type { PokemonWithSprite } from "./types";
@@ -19,13 +20,30 @@ function App() {
   const [parsedTeam, setParsedTeam] = useState<PokemonWithSprite[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [showOTS, setShowOTS] = useState(false);
   const teraListRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
 
   const handleGenerate = async () => {
-    const team = parseTeam(teamText);
+    setError(null);
+
+    // Check if input is a Pokepaste URL
+    let textToParse = teamText;
+    if (isPokepastUrl(teamText.trim())) {
+      try {
+        setIsLoading(true);
+        textToParse = await fetchPokepaste(teamText.trim());
+        setTeamText(textToParse); // Update textarea with fetched content
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to fetch paste");
+        setIsLoading(false);
+        return;
+      }
+    }
+
+    const team = parseTeam(textToParse);
     if (team.length === 0) {
       setParsedTeam([]);
       setShowResults(true);
@@ -78,6 +96,12 @@ function App() {
     setTeamText("");
     setParsedTeam([]);
     setShowResults(false);
+    setError(null);
+  };
+
+  const handleTextChange = (text: string) => {
+    setTeamText(text);
+    setError(null);
   };
 
   const handleViewToggle = () => {
@@ -113,10 +137,11 @@ function App() {
       <main className={styles.main}>
         <TeamInput
           value={teamText}
-          onChange={setTeamText}
+          onChange={handleTextChange}
           onGenerate={handleGenerate}
           onClear={handleClear}
           isLoading={isLoading}
+          error={error}
         />
         {showResults && (
           <TeraList
