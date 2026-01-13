@@ -11,6 +11,8 @@ interface TeraCardProps {
 
 export function TeraCard({ pokemon, showOTS = false }: TeraCardProps) {
   const teraColor = getTeraColor(pokemon.teraType, TERA_TYPE_COLORS);
+  // Prefer base64 data URL (works in downloads), fall back to external URL (browser only)
+  const itemSpriteUrl = pokemon.itemSpriteDataUrl || pokemon.itemSpriteFallbackUrl;
 
   if (showOTS) {
     return (
@@ -31,9 +33,9 @@ export function TeraCard({ pokemon, showOTS = false }: TeraCardProps) {
               <div className={styles.otsInfoRow}>
                 <span className={styles.otsLabel}>Item</span>
                 <span className={sharedStyles.pokemonItem}>
-                  {pokemon.itemSpriteUrl && (
+                  {itemSpriteUrl && (
                     <img
-                      src={pokemon.itemSpriteUrl}
+                      src={itemSpriteUrl}
                       alt={pokemon.item}
                       className={sharedStyles.itemSprite}
                     />

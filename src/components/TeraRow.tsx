@@ -11,6 +11,8 @@ interface TeraRowProps {
 
 export function TeraRow({ pokemon, showOTS = false }: TeraRowProps) {
   const teraColor = getTeraColor(pokemon.teraType, TERA_TYPE_COLORS);
+  // Prefer base64 data URL (works in downloads), fall back to external URL (browser only)
+  const itemSpriteUrl = pokemon.itemSpriteDataUrl || pokemon.itemSpriteFallbackUrl;
 
   return (
     <div className={`${styles.teraRow}${showOTS ? ` ${styles.ots}` : ''}`}>
@@ -27,9 +29,9 @@ export function TeraRow({ pokemon, showOTS = false }: TeraRowProps) {
         <span className={sharedStyles.pokemonName}>{pokemon.name}</span>
         {showOTS && pokemon.item && (
           <span className={sharedStyles.pokemonItem}>
-            {pokemon.itemSpriteUrl && (
+            {itemSpriteUrl && (
               <img
-                src={pokemon.itemSpriteUrl}
+                src={itemSpriteUrl}
                 alt={pokemon.item}
                 className={sharedStyles.itemSprite}
               />

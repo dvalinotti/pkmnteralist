@@ -1,3 +1,5 @@
+import { LOCAL_ITEM_SPRITES } from "../assets/items";
+
 export const loadImageAsDataUrl = async (url: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -82,7 +84,6 @@ const normalizeForPokeAPI = (name: string): string => {
     .replace(/^-|-$/g, ""); // Remove leading/trailing hyphens
 
   // Check if this is a base form that needs a suffix for PokeAPI
-  console.log({ normalized });
   if (BASE_FORM_TO_POKEAPI[normalized]) {
     return BASE_FORM_TO_POKEAPI[normalized];
   }
@@ -166,17 +167,75 @@ export const getTeraColor = (
 };
 
 /**
- * Generates the item sprite URL from Serebii.
- * Normalizes item name: "Focus Sash" -> "focussash" (no hyphens)
- * Serebii has the most up-to-date item sprites including Scarlet/Violet items.
+ * Normalizes item name for PokeAPI/GitHub sprites (kebab-case).
+ * "Focus Sash" -> "focus-sash"
  */
-export const getItemSpriteUrl = (itemName: string): string => {
-  const normalized = itemName
+const normalizeItemForPokeAPI = (itemName: string): string => {
+  return itemName
+    .toLowerCase()
+    .replace(/['']/g, "") // Remove apostrophes
+    .replace(/[.]/g, "") // Remove periods
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/[^a-z0-9-]/g, "") // Remove other special chars
+    .replace(/-+/g, "-") // Collapse multiple hyphens
+    .replace(/^-|-$/g, ""); // Remove leading/trailing hyphens
+};
+
+/**
+ * Normalizes item name for Serebii sprites (no hyphens).
+ * "Focus Sash" -> "focussash"
+ */
+const normalizeItemForSerebii = (itemName: string): string => {
+  return itemName
     .toLowerCase()
     .replace(/['']/g, "") // Remove apostrophes
     .replace(/[.]/g, "") // Remove periods
     .replace(/\s+/g, "") // Remove spaces entirely
     .replace(/[^a-z0-9]/g, ""); // Remove all special chars including hyphens
+};
 
-  return `https://www.serebii.net/itemdex/sprites/sv/${normalized}.png`;
+/**
+ * Gets item sprite URLs. Returns primary (PokeAPI with CORS) and fallback (Serebii).
+ */
+export const getItemSpriteUrls = (itemName: string): { primary: string; fallback: string } => {
+  const pokeApiName = normalizeItemForPokeAPI(itemName);
+  const serebiiName = normalizeItemForSerebii(itemName);
+
+  return {
+    primary: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${pokeApiName}.png`,
+    fallback: `https://www.serebii.net/itemdex/sprites/sv/${serebiiName}.png`,
+  };
+};
+
+/**
+ * Fetches an item sprite and returns it as a base64 data URL.
+ * Priority: 1) Local bundled sprites, 2) PokeAPI/GitHub, 3) Serebii URL fallback.
+ * Returns { dataUrl, fallbackUrl } - dataUrl is null if no CORS-enabled source available.
+ */
+export const fetchItemSprite = async (
+  itemName: string
+): Promise<{ dataUrl: string | null; fallbackUrl: string }> => {
+  const pokeApiName = normalizeItemForPokeAPI(itemName);
+  const urls = getItemSpriteUrls(itemName);
+
+  // Check for local bundled sprite first (SV-exclusive items)
+  const localSprite = LOCAL_ITEM_SPRITES[pokeApiName];
+  if (localSprite) {
+    try {
+      // Local sprites are already bundled, convert to base64 for consistency
+      const dataUrl = await loadImageAsDataUrl(localSprite);
+      return { dataUrl, fallbackUrl: urls.fallback };
+    } catch {
+      // Fall through to try other sources
+    }
+  }
+
+  // Try PokeAPI/GitHub (has CORS support)
+  try {
+    const dataUrl = await loadImageAsDataUrl(urls.primary);
+    return { dataUrl, fallbackUrl: urls.fallback };
+  } catch {
+    // PokeAPI doesn't have this item, return Serebii URL as fallback
+    return { dataUrl: null, fallbackUrl: urls.fallback };
+  }
 };

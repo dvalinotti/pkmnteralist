@@ -5,7 +5,7 @@ import {
   loadImageAsDataUrl,
   fetchPokemonSprite,
   getTypeIconUrl,
-  getItemSpriteUrl,
+  fetchItemSprite,
 } from "./utils/imageUtils";
 import { isPokepastUrl, fetchPokepaste } from "./utils/pokepaste";
 import { Header, TeamInput, TeraList } from "./components";
@@ -76,14 +76,21 @@ function App() {
           }
         }
 
-        // Item sprite URL (not converted to base64 due to CORS limitations)
-        const itemSpriteUrl = pokemon.item ? getItemSpriteUrl(pokemon.item) : null;
+        // Fetch item sprite - tries PokeAPI (CORS-enabled) first, falls back to Serebii
+        let itemSpriteDataUrl: string | null = null;
+        let itemSpriteFallbackUrl: string | null = null;
+        if (pokemon.item) {
+          const itemSprite = await fetchItemSprite(pokemon.item);
+          itemSpriteDataUrl = itemSprite.dataUrl;
+          itemSpriteFallbackUrl = itemSprite.fallbackUrl;
+        }
 
         return {
           ...pokemon,
           spriteDataUrl,
           typeIconDataUrl,
-          itemSpriteUrl,
+          itemSpriteDataUrl,
+          itemSpriteFallbackUrl,
         };
       })
     );

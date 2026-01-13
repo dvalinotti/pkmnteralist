@@ -9,7 +9,8 @@ export interface Pokemon {
 export interface PokemonWithSprite extends Pokemon {
   spriteDataUrl: string;
   typeIconDataUrl: string | null;
-  itemSpriteUrl: string | null; // URL only (not base64) due to CORS limitations
+  itemSpriteDataUrl: string | null; // Base64 for download (from PokeAPI)
+  itemSpriteFallbackUrl: string | null; // URL fallback for newer items (from Serebii)
 }
 
 export const TERA_TYPES = [
