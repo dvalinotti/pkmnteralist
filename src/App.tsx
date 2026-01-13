@@ -5,6 +5,7 @@ import {
   loadImageAsDataUrl,
   fetchPokemonSprite,
   getTypeIconUrl,
+  getItemSpriteUrl,
 } from "./utils/imageUtils";
 import { Header, TeamInput, TeraList } from "./components";
 import type { ViewMode } from "./components";
@@ -19,6 +20,7 @@ function App() {
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
+  const [showOTS, setShowOTS] = useState(false);
   const teraListRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
 
@@ -56,10 +58,14 @@ function App() {
           }
         }
 
+        // Item sprite URL (not converted to base64 due to CORS limitations)
+        const itemSpriteUrl = pokemon.item ? getItemSpriteUrl(pokemon.item) : null;
+
         return {
           ...pokemon,
           spriteDataUrl,
           typeIconDataUrl,
+          itemSpriteUrl,
         };
       })
     );
@@ -76,6 +82,10 @@ function App() {
 
   const handleViewToggle = () => {
     setViewMode((prev) => (prev === "list" ? "grid" : "list"));
+  };
+
+  const handleOTSToggle = () => {
+    setShowOTS((prev) => !prev);
   };
 
   const handleDownload = async (format: "png" | "jpg") => {
@@ -116,6 +126,8 @@ function App() {
             viewMode={viewMode}
             onViewToggle={handleViewToggle}
             onDownload={handleDownload}
+            showOTS={showOTS}
+            onOTSToggle={handleOTSToggle}
           />
         )}
       </main>

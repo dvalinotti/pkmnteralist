@@ -164,3 +164,19 @@ export const getTeraColor = (
 ): string => {
   return colors[teraType] || "#888888";
 };
+
+/**
+ * Generates the item sprite URL from Serebii.
+ * Normalizes item name: "Focus Sash" -> "focussash" (no hyphens)
+ * Serebii has the most up-to-date item sprites including Scarlet/Violet items.
+ */
+export const getItemSpriteUrl = (itemName: string): string => {
+  const normalized = itemName
+    .toLowerCase()
+    .replace(/['']/g, "") // Remove apostrophes
+    .replace(/[.]/g, "") // Remove periods
+    .replace(/\s+/g, "") // Remove spaces entirely
+    .replace(/[^a-z0-9]/g, ""); // Remove all special chars including hyphens
+
+  return `https://www.serebii.net/itemdex/sprites/sv/${normalized}.png`;
+};

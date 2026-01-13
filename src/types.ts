@@ -1,11 +1,15 @@
 export interface Pokemon {
   name: string;
   teraType: string;
+  item: string | null;
+  ability: string | null;
+  moves: string[];
 }
 
 export interface PokemonWithSprite extends Pokemon {
   spriteDataUrl: string;
   typeIconDataUrl: string | null;
+  itemSpriteUrl: string | null; // URL only (not base64) due to CORS limitations
 }
 
 export const TERA_TYPES = [

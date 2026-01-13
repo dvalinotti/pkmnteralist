@@ -41,6 +41,8 @@
   justify-content: center;
   transition: background-color 0.2s, border-color 0.2s;
   flex-shrink: 0;
+  min-height: 48px;
+  min-width: 48px;
 }
 
 .icon-button > a {
@@ -56,7 +58,7 @@
   fill: var(--text-secondary);
 }
 
-.theme-toggle:hover {
+.github-icon .theme-toggle:hover {
   background-color: var(--btn-secondary-bg-hover);
   border-color: var(--border-color-hover);
 }
@@ -336,6 +338,177 @@
   width: 14px;
 }
 
+/* OTS Toggle */
+.ots-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.ots-toggle input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+/* OTS Mode Styles */
+.tera-container.ots-mode.tera-grid {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 764px;
+  margin: 0 auto;
+}
+
+.tera-container.ots-mode.tera-list {
+  max-width: 600px;
+}
+
+/* OTS Card Styles */
+.tera-card.ots {
+  flex-direction: row;
+  align-items: stretch;
+  padding: 0.75rem;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.tera-card.ots .ots-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 0.25rem;
+}
+
+.tera-card.ots .ots-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  border-left: 1px solid var(--border-color);
+  padding-left: 0.75rem;
+}
+
+.tera-card.ots .pokemon-sprite {
+  width: 64px;
+  height: 64px;
+}
+
+.tera-card.ots .pokemon-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.ots-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.ots-info-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.ots-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 42px;
+}
+
+.pokemon-item {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.item-sprite {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.tera-card.ots .tera-badge {
+  margin: 0;
+}
+
+.pokemon-ability {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.pokemon-moves {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  gap: 0.25rem;
+  height: 100%;
+}
+
+.pokemon-moves li {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  padding: 0.25rem 0.5rem;
+  background-color: var(--bg-secondary);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* OTS Row Styles */
+.tera-row.ots {
+  align-items: flex-start;
+  padding: 0.75rem;
+}
+
+.tera-row .pokemon-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.25rem;
+}
+
+.tera-row.ots .pokemon-name {
+  flex: none;
+}
+
+.tera-row.ots .tera-badge {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+
+.tera-row .ots-details {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.tera-row .pokemon-moves {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
 .footer {
   width: 100%;
   padding: 1rem 0;
@@ -439,5 +612,20 @@
   .generate-btn,
   .clear-btn {
     width: 100%;
+  }
+
+  .ots-toggle {
+    justify-content: center;
+  }
+
+  .tera-row.ots .pokemon-sprite {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 800px) {
+  .tera-container.ots-mode.tera-grid {
+    grid-template-columns: 1fr;
   }
 }

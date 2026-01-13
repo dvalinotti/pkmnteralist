@@ -11,5 +11,8 @@ export function parseTeam(teamText: string): Pokemon[] {
   return team.team.map((set) => ({
     name: set.species || 'Unknown',
     teraType: set.teraType || 'Unknown',
+    item: set.item || null,
+    ability: set.ability || null,
+    moves: set.moves || [],
   }));
 }

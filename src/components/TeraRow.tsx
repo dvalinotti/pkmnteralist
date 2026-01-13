@@ -4,13 +4,14 @@ import { getTeraColor } from '../utils/imageUtils';
 
 interface TeraRowProps {
   pokemon: PokemonWithSprite;
+  showOTS?: boolean;
 }
 
-export function TeraRow({ pokemon }: TeraRowProps) {
+export function TeraRow({ pokemon, showOTS = false }: TeraRowProps) {
   const teraColor = getTeraColor(pokemon.teraType, TERA_TYPE_COLORS);
 
   return (
-    <div className="tera-row">
+    <div className={`tera-row${showOTS ? ' ots' : ''}`}>
       {pokemon.spriteDataUrl ? (
         <img
           src={pokemon.spriteDataUrl}
@@ -20,7 +21,26 @@ export function TeraRow({ pokemon }: TeraRowProps) {
       ) : (
         <div className="pokemon-sprite placeholder" />
       )}
-      <span className="pokemon-name">{pokemon.name}</span>
+      <div className="pokemon-info">
+        <span className="pokemon-name">{pokemon.name}</span>
+        {showOTS && pokemon.item && (
+          <span className="pokemon-item">@ {pokemon.item}</span>
+        )}
+        {showOTS && (
+          <div className="ots-details">
+            {pokemon.ability && (
+              <div className="pokemon-ability">{pokemon.ability}</div>
+            )}
+            {pokemon.moves.length > 0 && (
+              <ul className="pokemon-moves">
+                {pokemon.moves.map((move, idx) => (
+                  <li key={idx}>{move}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+      </div>
       <div
         className="tera-badge"
         style={{ backgroundColor: teraColor }}
