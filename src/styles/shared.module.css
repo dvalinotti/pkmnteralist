@@ -1,0 +1,108 @@
+/* Shared Pokemon display styles used by TeraRow and TeraCard */
+
+.pokemonSprite {
+  width: 96px;
+  height: 96px;
+  image-rendering: pixelated;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.pokemonName {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.teraBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.typeIcon {
+  height: 18px;
+  width: 18px;
+  object-fit: contain;
+}
+
+.pokemonItem {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: max-content;
+  max-width: 100%;
+}
+
+.itemSprite {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.pokemonAbility {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.pokemonMoves {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  gap: 0.25rem;
+  height: 100%;
+}
+
+.pokemonMoves li {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 0.25rem 0.5rem;
+  background-color: var(--bg-secondary);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.placeholder {
+  background-color: var(--placeholder-bg);
+  border-radius: 4px;
+}
+
+/* Responsive styles for shared elements */
+@media (max-width: 600px) {
+  .pokemonSprite {
+    width: 40px;
+    height: 40px;
+  }
+
+  .pokemonName {
+    font-size: 0.85rem;
+  }
+
+  .teraBadge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .typeIcon {
+    height: 14px;
+    width: 14px;
+  }
+}

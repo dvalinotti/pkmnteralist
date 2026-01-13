@@ -4,6 +4,7 @@ import { TeraRow } from "./TeraRow";
 import { TeraCard } from "./TeraCard";
 import { ViewToggle } from "./ViewToggle";
 import type { ViewMode } from "./ViewToggle";
+import styles from "./TeraList.module.css";
 
 interface TeraListProps {
   team: PokemonWithSprite[];
@@ -28,13 +29,21 @@ export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(
     },
     ref
   ) {
+    const containerClasses = [
+      styles.teraContainer,
+      viewMode === "list" ? styles.teraList : styles.teraGrid,
+      showOTS ? styles.otsMode : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
     return (
-      <div className="results-section">
-        <div className="results-header">
+      <div className={styles.resultsSection}>
+        <div className={styles.resultsHeader}>
           <h2>{showOTS ? "Open Team Sheet" : "Team Tera Types"}</h2>
           {team.length > 0 && !isLoading && (
-            <div className="results-actions">
-              <label className="ots-toggle">
+            <div className={styles.resultsActions}>
+              <label className={styles.otsToggle}>
                 <input
                   type="checkbox"
                   checked={showOTS}
@@ -43,15 +52,15 @@ export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(
                 <span>Display full OTS</span>
               </label>
               <ViewToggle viewMode={viewMode} onToggle={onViewToggle} />
-              <div className="download-buttons">
+              <div className={styles.downloadButtons}>
                 <button
-                  className="download-btn"
+                  className={styles.downloadBtn}
                   onClick={() => onDownload("png")}
                 >
                   Download PNG
                 </button>
                 <button
-                  className="download-btn"
+                  className={styles.downloadBtn}
                   onClick={() => onDownload("jpg")}
                 >
                   Download JPG
@@ -61,18 +70,13 @@ export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(
           )}
         </div>
         {isLoading ? (
-          <p className="loading">Loading sprites...</p>
+          <p className={styles.loading}>Loading sprites...</p>
         ) : team.length === 0 ? (
-          <p className="no-results">
+          <p className={styles.noResults}>
             No Pokemon found. Make sure your team is in Pokemon Showdown format.
           </p>
         ) : (
-          <div
-            className={`tera-container tera-${viewMode}${
-              showOTS ? " ots-mode" : ""
-            }`}
-            ref={ref}
-          >
+          <div className={containerClasses} ref={ref}>
             {team.map((pokemon, index) =>
               viewMode === "list" ? (
                 <TeraRow key={index} pokemon={pokemon} showOTS={showOTS} />

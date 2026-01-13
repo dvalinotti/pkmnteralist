@@ -1,6 +1,8 @@
 import type { PokemonWithSprite } from '../types';
 import { TERA_TYPE_COLORS } from '../types';
 import { getTeraColor } from '../utils/imageUtils';
+import styles from './TeraRow.module.css';
+import sharedStyles from '../styles/shared.module.css';
 
 interface TeraRowProps {
   pokemon: PokemonWithSprite;
@@ -11,28 +13,37 @@ export function TeraRow({ pokemon, showOTS = false }: TeraRowProps) {
   const teraColor = getTeraColor(pokemon.teraType, TERA_TYPE_COLORS);
 
   return (
-    <div className={`tera-row${showOTS ? ' ots' : ''}`}>
+    <div className={`${styles.teraRow}${showOTS ? ` ${styles.ots}` : ''}`}>
       {pokemon.spriteDataUrl ? (
         <img
           src={pokemon.spriteDataUrl}
           alt={pokemon.name}
-          className="pokemon-sprite"
+          className={sharedStyles.pokemonSprite}
         />
       ) : (
-        <div className="pokemon-sprite placeholder" />
+        <div className={`${sharedStyles.pokemonSprite} ${sharedStyles.placeholder}`} />
       )}
-      <div className="pokemon-info">
-        <span className="pokemon-name">{pokemon.name}</span>
+      <div className={styles.pokemonInfo}>
+        <span className={sharedStyles.pokemonName}>{pokemon.name}</span>
         {showOTS && pokemon.item && (
-          <span className="pokemon-item">@ {pokemon.item}</span>
+          <span className={sharedStyles.pokemonItem}>
+            {pokemon.itemSpriteUrl && (
+              <img
+                src={pokemon.itemSpriteUrl}
+                alt={pokemon.item}
+                className={sharedStyles.itemSprite}
+              />
+            )}
+            {pokemon.item}
+          </span>
         )}
         {showOTS && (
-          <div className="ots-details">
+          <div className={styles.otsDetails}>
             {pokemon.ability && (
-              <div className="pokemon-ability">{pokemon.ability}</div>
+              <div className={sharedStyles.pokemonAbility}>{pokemon.ability}</div>
             )}
             {pokemon.moves.length > 0 && (
-              <ul className="pokemon-moves">
+              <ul className={sharedStyles.pokemonMoves}>
                 {pokemon.moves.map((move, idx) => (
                   <li key={idx}>{move}</li>
                 ))}
@@ -42,14 +53,14 @@ export function TeraRow({ pokemon, showOTS = false }: TeraRowProps) {
         )}
       </div>
       <div
-        className="tera-badge"
+        className={sharedStyles.teraBadge}
         style={{ backgroundColor: teraColor }}
       >
         {pokemon.typeIconDataUrl && (
           <img
             src={pokemon.typeIconDataUrl}
             alt={pokemon.teraType}
-            className="type-icon"
+            className={sharedStyles.typeIcon}
           />
         )}
         {pokemon.teraType}

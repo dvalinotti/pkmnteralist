@@ -1,3 +1,5 @@
+import styles from "./ViewToggle.module.css";
+
 export type ViewMode = 'list' | 'grid';
 
 interface ViewToggleProps {
@@ -8,7 +10,7 @@ interface ViewToggleProps {
 export function ViewToggle({ viewMode, onToggle }: ViewToggleProps) {
   return (
     <button
-      className="view-toggle"
+      className={styles.viewToggle}
       onClick={onToggle}
       aria-label={`Switch to ${viewMode === 'list' ? 'grid' : 'list'} view`}
     >

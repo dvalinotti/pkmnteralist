@@ -1,0 +1,34 @@
+.iconButton {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.iconButton:hover {
+  background-color: var(--btn-secondary-bg-hover);
+  border-color: var(--border-color-hover);
+}
+
+.themeToggle {
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+@media (max-width: 600px) {
+  .themeToggle {
+    align-self: flex-end;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}

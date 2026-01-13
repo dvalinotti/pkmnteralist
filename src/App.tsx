@@ -11,7 +11,7 @@ import { Header, TeamInput, TeraList } from "./components";
 import type { ViewMode } from "./components";
 import type { PokemonWithSprite } from "./types";
 import { useTheme } from "./context/ThemeContext";
-import "./App.css";
+import styles from "./App.module.css";
 import { Footer } from "./components/Footer";
 
 function App() {
@@ -108,9 +108,9 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className={styles.app}>
       <Header />
-      <main className="main">
+      <main className={styles.main}>
         <TeamInput
           value={teamText}
           onChange={setTeamText}

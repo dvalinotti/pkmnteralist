@@ -1,3 +1,5 @@
+import styles from "./TeamInput.module.css";
+
 interface TeamInputProps {
   value: string;
   onChange: (value: string) => void;
@@ -21,22 +23,22 @@ Timid Nature
 
 export function TeamInput({ value, onChange, onGenerate, onClear, isLoading }: TeamInputProps) {
   return (
-    <div className="input-section">
+    <div className={styles.inputSection}>
       <textarea
-        className="team-input"
+        className={styles.teamInput}
         placeholder={PLACEHOLDER_TEXT}
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
-      <div className="button-group">
+      <div className={styles.buttonGroup}>
         <button
-          className="generate-btn"
+          className={styles.generateBtn}
           onClick={onGenerate}
           disabled={!value.trim() || isLoading}
         >
           {isLoading ? 'Loading...' : 'Generate Tera List'}
         </button>
-        <button className="clear-btn" onClick={onClear}>
+        <button className={styles.clearBtn} onClick={onClear}>
           Clear
         </button>
       </div>

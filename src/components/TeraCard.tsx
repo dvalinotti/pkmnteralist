@@ -1,6 +1,8 @@
 import type { PokemonWithSprite } from '../types';
 import { TERA_TYPE_COLORS } from '../types';
 import { getTeraColor } from '../utils/imageUtils';
+import styles from './TeraCard.module.css';
+import sharedStyles from '../styles/shared.module.css';
 
 interface TeraCardProps {
   pokemon: PokemonWithSprite;
@@ -12,28 +14,28 @@ export function TeraCard({ pokemon, showOTS = false }: TeraCardProps) {
 
   if (showOTS) {
     return (
-      <div className="tera-card ots">
-        <div className="ots-left">
+      <div className={`${styles.teraCard} ${styles.ots}`}>
+        <div className={styles.otsLeft}>
           {pokemon.spriteDataUrl ? (
             <img
               src={pokemon.spriteDataUrl}
               alt={pokemon.name}
-              className="pokemon-sprite"
+              className={sharedStyles.pokemonSprite}
             />
           ) : (
-            <div className="pokemon-sprite placeholder" />
+            <div className={`${sharedStyles.pokemonSprite} ${sharedStyles.placeholder}`} />
           )}
-          <span className="pokemon-name">{pokemon.name}</span>
-          <div className="ots-info">
+          <span className={sharedStyles.pokemonName}>{pokemon.name}</span>
+          <div className={styles.otsInfo}>
             {pokemon.item && (
-              <div className="ots-info-row">
-                <span className="ots-label">Item</span>
-                <span className="pokemon-item">
+              <div className={styles.otsInfoRow}>
+                <span className={styles.otsLabel}>Item</span>
+                <span className={sharedStyles.pokemonItem}>
                   {pokemon.itemSpriteUrl && (
                     <img
                       src={pokemon.itemSpriteUrl}
                       alt={pokemon.item}
-                      className="item-sprite"
+                      className={sharedStyles.itemSprite}
                     />
                   )}
                   {pokemon.item}
@@ -41,22 +43,22 @@ export function TeraCard({ pokemon, showOTS = false }: TeraCardProps) {
               </div>
             )}
             {pokemon.ability && (
-              <div className="ots-info-row">
-                <span className="ots-label">Ability</span>
-                <span className="pokemon-ability">{pokemon.ability}</span>
+              <div className={styles.otsInfoRow}>
+                <span className={styles.otsLabel}>Ability</span>
+                <span className={sharedStyles.pokemonAbility}>{pokemon.ability}</span>
               </div>
             )}
-            <div className="ots-info-row">
-              <span className="ots-label">Tera</span>
+            <div className={styles.otsInfoRow}>
+              <span className={styles.otsLabel}>Tera</span>
               <div
-                className="tera-badge"
+                className={sharedStyles.teraBadge}
                 style={{ backgroundColor: teraColor }}
               >
                 {pokemon.typeIconDataUrl && (
                   <img
                     src={pokemon.typeIconDataUrl}
                     alt={pokemon.teraType}
-                    className="type-icon"
+                    className={sharedStyles.typeIcon}
                   />
                 )}
                 {pokemon.teraType}
@@ -64,9 +66,9 @@ export function TeraCard({ pokemon, showOTS = false }: TeraCardProps) {
             </div>
           </div>
         </div>
-        <div className="ots-right">
+        <div className={styles.otsRight}>
           {pokemon.moves.length > 0 && (
-            <ul className="pokemon-moves">
+            <ul className={sharedStyles.pokemonMoves}>
               {pokemon.moves.map((move, idx) => (
                 <li key={idx}>{move}</li>
               ))}
@@ -78,26 +80,26 @@ export function TeraCard({ pokemon, showOTS = false }: TeraCardProps) {
   }
 
   return (
-    <div className="tera-card">
+    <div className={styles.teraCard}>
       {pokemon.spriteDataUrl ? (
         <img
           src={pokemon.spriteDataUrl}
           alt={pokemon.name}
-          className="pokemon-sprite"
+          className={sharedStyles.pokemonSprite}
         />
       ) : (
-        <div className="pokemon-sprite placeholder" />
+        <div className={`${sharedStyles.pokemonSprite} ${sharedStyles.placeholder}`} />
       )}
-      <span className="pokemon-name">{pokemon.name}</span>
+      <span className={sharedStyles.pokemonName}>{pokemon.name}</span>
       <div
-        className="tera-badge"
+        className={sharedStyles.teraBadge}
         style={{ backgroundColor: teraColor }}
       >
         {pokemon.typeIconDataUrl && (
           <img
             src={pokemon.typeIconDataUrl}
             alt={pokemon.teraType}
-            className="type-icon"
+            className={sharedStyles.typeIcon}
           />
         )}
         {pokemon.teraType}

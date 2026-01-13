@@ -1,0 +1,25 @@
+.viewToggle {
+  background-color: var(--btn-secondary-bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color-hover);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.viewToggle:hover {
+  background-color: var(--btn-secondary-bg-hover);
+  border-color: #667eea;
+}
+
+@media (max-width: 600px) {
+  .viewToggle {
+    justify-content: center;
+  }
+}
