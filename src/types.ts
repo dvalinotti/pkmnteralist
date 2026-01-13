@@ -1,9 +1,22 @@
+export interface StatSpread {
+  hp: number;
+  atk: number;
+  def: number;
+  spa: number;
+  spd: number;
+  spe: number;
+}
+
 export interface Pokemon {
   name: string;
   teraType: string;
   item: string | null;
   ability: string | null;
   moves: string[];
+  nature: string | null;
+  level: number;
+  evs: StatSpread;
+  ivs: StatSpread;
 }
 
 export interface PokemonWithSprite extends Pokemon {

@@ -7,9 +7,29 @@ import sharedStyles from '../styles/shared.module.css';
 interface TeraRowProps {
   pokemon: PokemonWithSprite;
   showOTS?: boolean;
+  showEVs?: boolean;
 }
 
-export function TeraRow({ pokemon, showOTS = false }: TeraRowProps) {
+const formatStatSpread = (
+  stats: { hp: number; atk: number; def: number; spa: number; spd: number; spe: number },
+  isEV: boolean
+): string => {
+  const statNames = ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe'];
+  const statValues = [stats.hp, stats.atk, stats.def, stats.spa, stats.spd, stats.spe];
+  const defaultValue = isEV ? 0 : 31;
+
+  const nonDefault = statValues
+    .map((val, i) => ({ name: statNames[i], val }))
+    .filter(({ val }) => val !== defaultValue);
+
+  if (nonDefault.length === 0) {
+    return isEV ? 'None' : 'All 31';
+  }
+
+  return nonDefault.map(({ name, val }) => `${val} ${name}`).join(' / ');
+};
+
+export function TeraRow({ pokemon, showOTS = false, showEVs = false }: TeraRowProps) {
   const teraColor = getTeraColor(pokemon.teraType, TERA_TYPE_COLORS);
   // Prefer base64 data URL (works in downloads), fall back to external URL (browser only)
   const itemSpriteUrl = pokemon.itemSpriteDataUrl || pokemon.itemSpriteFallbackUrl;
@@ -50,6 +70,15 @@ export function TeraRow({ pokemon, showOTS = false }: TeraRowProps) {
                   <li key={idx}>{move}</li>
                 ))}
               </ul>
+            )}
+            {showEVs && (
+              <div className={sharedStyles.pokemonStatsBlock}>
+                {pokemon.nature && (
+                  <div className={sharedStyles.pokemonNature}>{pokemon.nature} Nature</div>
+                )}
+                <div className={sharedStyles.pokemonStats}>EVs: {formatStatSpread(pokemon.evs, true)}</div>
+                <div className={sharedStyles.pokemonStats}>IVs: {formatStatSpread(pokemon.ivs, false)}</div>
+              </div>
             )}
           </div>
         )}

@@ -23,6 +23,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [showOTS, setShowOTS] = useState(false);
+  const [showEVs, setShowEVs] = useState(false);
   const teraListRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
 
@@ -119,6 +120,10 @@ function App() {
     setShowOTS((prev) => !prev);
   };
 
+  const handleEVsToggle = () => {
+    setShowEVs((prev) => !prev);
+  };
+
   const handleDownload = async (format: "png" | "jpg") => {
     if (!teraListRef.current) return;
 
@@ -160,6 +165,8 @@ function App() {
             onDownload={handleDownload}
             showOTS={showOTS}
             onOTSToggle={handleOTSToggle}
+            showEVs={showEVs}
+            onEVsToggle={handleEVsToggle}
           />
         )}
       </main>

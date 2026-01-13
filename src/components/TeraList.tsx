@@ -14,6 +14,8 @@ interface TeraListProps {
   onDownload: (format: "png" | "jpg") => void;
   showOTS: boolean;
   onOTSToggle: () => void;
+  showEVs: boolean;
+  onEVsToggle: () => void;
 }
 
 export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(
@@ -26,6 +28,8 @@ export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(
       onDownload,
       showOTS,
       onOTSToggle,
+      showEVs,
+      onEVsToggle,
     },
     ref
   ) {
@@ -51,6 +55,16 @@ export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(
                 />
                 <span>Display full OTS</span>
               </label>
+              {showOTS && (
+                <label className={styles.otsToggle}>
+                  <input
+                    type="checkbox"
+                    checked={showEVs}
+                    onChange={onEVsToggle}
+                  />
+                  <span>Show EVs/IVs</span>
+                </label>
+              )}
               <ViewToggle viewMode={viewMode} onToggle={onViewToggle} />
               <div className={styles.downloadButtons}>
                 <button
@@ -79,9 +93,9 @@ export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(
           <div className={containerClasses} ref={ref}>
             {team.map((pokemon, index) =>
               viewMode === "list" ? (
-                <TeraRow key={index} pokemon={pokemon} showOTS={showOTS} />
+                <TeraRow key={index} pokemon={pokemon} showOTS={showOTS} showEVs={showEVs} />
               ) : (
-                <TeraCard key={index} pokemon={pokemon} showOTS={showOTS} />
+                <TeraCard key={index} pokemon={pokemon} showOTS={showOTS} showEVs={showEVs} />
               )
             )}
           </div>
