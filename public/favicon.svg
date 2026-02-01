@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="teraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+  </defs>
+  <!-- Crystal/Tera gem shape -->
+  <polygon points="16,2 28,12 24,28 8,28 4,12" fill="url(#teraGradient)"/>
+  <!-- Inner facet highlights -->
+  <polygon points="16,6 22,12 20,22 12,22 10,12" fill="rgba(255,255,255,0.2)"/>
+  <polygon points="16,6 10,12 12,22 16,24" fill="rgba(0,0,0,0.1)"/>
+  <!-- Top highlight -->
+  <polygon points="16,2 22,10 16,8 10,10" fill="rgba(255,255,255,0.3)"/>
+</svg>
