@@ -3,6 +3,9 @@
   border-radius: 12px;
   padding: 1.5rem;
   border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .resultsHeader {
@@ -42,12 +45,10 @@
   accent-color: #667eea;
 }
 
-.downloadButtons {
+.copyBtn {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
-}
-
-.downloadBtn {
   background-color: var(--btn-secondary-bg);
   color: var(--text-secondary);
   border: 1px solid var(--border-color-hover);
@@ -56,12 +57,26 @@
   font-weight: 500;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s;
 }
 
-.downloadBtn:hover {
+.copyBtn:hover {
   background-color: var(--btn-secondary-bg-hover);
   border-color: #667eea;
+}
+
+.copyBtn.copied {
+  background-color: #22c55e;
+  border-color: #22c55e;
+  color: white;
+  cursor: default;
+}
+
+.copyBtn svg {
+  flex-shrink: 0;
 }
 
 .loading,
@@ -115,10 +130,6 @@
   .resultsActions {
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .downloadButtons {
-    justify-content: center;
   }
 
   .teraContainer {

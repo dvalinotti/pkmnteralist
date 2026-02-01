@@ -57,6 +57,7 @@ const BASE_FORM_TO_POKEAPI: Record<string, string> = {
   mimikyu: "mimikyu-disguised",
   eiscue: "eiscue-ice",
   morpeko: "morpeko-full-belly",
+  tatsugiri: "tatsugiri-curly",
   "urshifu-gmax": "urshifu-single-strike-gmax",
   "ogerpon-cornerstone": "ogerpon-cornerstone-mask",
   "ogerpon-wellspring": "ogerpon-wellspring-mask",

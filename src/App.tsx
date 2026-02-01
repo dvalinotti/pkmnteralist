@@ -124,23 +124,38 @@ function App() {
     setShowEVs((prev) => !prev);
   };
 
-  const handleDownload = async (format: "png" | "jpg") => {
-    if (!teraListRef.current) return;
+  const handleCopyToClipboard = async (): Promise<boolean> => {
+    if (!teraListRef.current) return false;
 
     const backgroundColor = theme === "dark" ? "#1a1a1a" : "#ffffff";
 
-    const canvas = await html2canvas(teraListRef.current, {
-      backgroundColor,
-      scale: 2,
-    });
+    try {
+      const canvas = await html2canvas(teraListRef.current, {
+        backgroundColor,
+        scale: 2,
+      });
 
-    const link = document.createElement("a");
-    link.download = `tera-list.${format}`;
-    link.href = canvas.toDataURL(
-      format === "jpg" ? "image/jpeg" : "image/png",
-      0.95
-    );
-    link.click();
+      return new Promise((resolve) => {
+        canvas.toBlob(async (blob) => {
+          if (blob) {
+            try {
+              await navigator.clipboard.write([
+                new ClipboardItem({ "image/png": blob }),
+              ]);
+              resolve(true);
+            } catch (err) {
+              console.error("Failed to copy image to clipboard:", err);
+              resolve(false);
+            }
+          } else {
+            resolve(false);
+          }
+        }, "image/png");
+      });
+    } catch (err) {
+      console.error("Failed to capture image:", err);
+      return false;
+    }
   };
 
   return (
@@ -162,7 +177,7 @@ function App() {
             isLoading={isLoading}
             viewMode={viewMode}
             onViewToggle={handleViewToggle}
-            onDownload={handleDownload}
+            onCopyToClipboard={handleCopyToClipboard}
             showOTS={showOTS}
             onOTSToggle={handleOTSToggle}
             showEVs={showEVs}

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Footer.module.css";
 
-const GITHUB_URL = "https://github.com/danvalinotti";
+const GITHUB_URL = "https://github.com/dvalinotti";
 
 export const Footer: React.FC = () => {
   return (
