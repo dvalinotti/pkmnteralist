@@ -68,7 +68,7 @@
   border-color: #667eea;
 }
 
-.copyBtn.copied {
+.copyBtn.success {
   background-color: #22c55e;
   border-color: #22c55e;
   color: white;

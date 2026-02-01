@@ -19,12 +19,22 @@ const CheckIcon = () => (
   </svg>
 );
 
+const DownloadIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" />
+    <line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+);
+
+type CopyStatus = "idle" | "copied" | "downloaded";
+
 interface TeraListProps {
   team: PokemonWithSprite[];
   isLoading: boolean;
   viewMode: ViewMode;
   onViewToggle: () => void;
-  onCopyToClipboard: () => Promise<boolean>;
+  onCopyToClipboard: () => Promise<boolean | "downloaded">;
   showOTS: boolean;
   onOTSToggle: () => void;
   showEVs: boolean;
@@ -46,13 +56,16 @@ export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(
     },
     ref
   ) {
-    const [copied, setCopied] = useState(false);
+    const [copyStatus, setCopyStatus] = useState<CopyStatus>("idle");
 
     const handleCopy = async () => {
-      const success = await onCopyToClipboard();
-      if (success) {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+      const result = await onCopyToClipboard();
+      if (result === true) {
+        setCopyStatus("copied");
+        setTimeout(() => setCopyStatus("idle"), 2000);
+      } else if (result === "downloaded") {
+        setCopyStatus("downloaded");
+        setTimeout(() => setCopyStatus("idle"), 2000);
       }
     };
 
@@ -90,12 +103,16 @@ export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(
               )}
               <ViewToggle viewMode={viewMode} onToggle={onViewToggle} />
               <button
-                className={`${styles.copyBtn} ${copied ? styles.copied : ""}`}
+                className={`${styles.copyBtn} ${copyStatus !== "idle" ? styles.success : ""}`}
                 onClick={handleCopy}
-                disabled={copied}
+                disabled={copyStatus !== "idle"}
               >
-                {copied ? <CheckIcon /> : <ClipboardIcon />}
-                {copied ? "Copied!" : "Copy to Clipboard"}
+                {copyStatus === "copied" && <CheckIcon />}
+                {copyStatus === "downloaded" && <DownloadIcon />}
+                {copyStatus === "idle" && <ClipboardIcon />}
+                {copyStatus === "copied" && "Copied!"}
+                {copyStatus === "downloaded" && "Downloaded!"}
+                {copyStatus === "idle" && "Copy to Clipboard"}
               </button>
             </div>
           )}

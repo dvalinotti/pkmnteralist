@@ -124,38 +124,56 @@ function App() {
     setShowEVs((prev) => !prev);
   };
 
-  const handleCopyToClipboard = async (): Promise<boolean> => {
-    if (!teraListRef.current) return false;
+  const handleCopyToClipboard = (): Promise<boolean | "downloaded"> => {
+    if (!teraListRef.current) return Promise.resolve(false);
 
     const backgroundColor = theme === "dark" ? "#1a1a1a" : "#ffffff";
+    const element = teraListRef.current;
 
-    try {
-      const canvas = await html2canvas(teraListRef.current, {
-        backgroundColor,
-        scale: 2,
-      });
-
-      return new Promise((resolve) => {
-        canvas.toBlob(async (blob) => {
-          if (blob) {
-            try {
-              await navigator.clipboard.write([
-                new ClipboardItem({ "image/png": blob }),
-              ]);
-              resolve(true);
-            } catch (err) {
-              console.error("Failed to copy image to clipboard:", err);
-              resolve(false);
+    // Create a promise that resolves to a blob - this allows Safari to work
+    // by passing the promise directly to ClipboardItem
+    const blobPromise = html2canvas(element, {
+      backgroundColor,
+      scale: 2,
+    }).then(
+      (canvas) =>
+        new Promise<Blob>((resolve, reject) => {
+          canvas.toBlob((blob) => {
+            if (blob) {
+              resolve(blob);
+            } else {
+              reject(new Error("Failed to create blob"));
             }
-          } else {
-            resolve(false);
-          }
-        }, "image/png");
+          }, "image/png");
+        })
+    );
+
+    // Call clipboard.write synchronously (not awaited) with the blob promise
+    // This preserves the user gesture context for Safari
+    return navigator.clipboard
+      .write([
+        new ClipboardItem({
+          "image/png": blobPromise,
+        }),
+      ])
+      .then(() => true)
+      .catch(async (err) => {
+        console.error("Clipboard copy failed, falling back to download:", err);
+        // Fallback: download the image instead
+        try {
+          const blob = await blobPromise;
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "tera-list.png";
+          link.click();
+          URL.revokeObjectURL(url);
+          return "downloaded" as const;
+        } catch (downloadErr) {
+          console.error("Download fallback also failed:", downloadErr);
+          return false;
+        }
       });
-    } catch (err) {
-      console.error("Failed to capture image:", err);
-      return false;
-    }
   };
 
   return (
