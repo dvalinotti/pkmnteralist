@@ -25,20 +25,34 @@ Examples:
   - Volt Switch`;
 
 export function TeamInput({ value, onChange, onGenerate, onClear, isLoading, error }: TeamInputProps) {
+  const errorId = error ? "team-input-error" : undefined;
+
   return (
     <div className={styles.inputSection}>
+      <label htmlFor="team-input" className={styles.visuallyHidden}>
+        Pokemon team data
+      </label>
       <textarea
+        id="team-input"
         className={styles.teamInput}
         placeholder={PLACEHOLDER_TEXT}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        aria-label="Paste your Pokemon Showdown team or Pokepaste URL"
+        aria-describedby={errorId}
+        aria-invalid={!!error}
       />
-      {error && <p className={styles.importError}>{error}</p>}
+      {error && (
+        <p id="team-input-error" className={styles.importError} role="alert">
+          {error}
+        </p>
+      )}
       <div className={styles.buttonGroup}>
         <button
           className={styles.generateBtn}
           onClick={onGenerate}
           disabled={!value.trim() || isLoading}
+          aria-busy={isLoading}
         >
           {isLoading ? 'Loading...' : 'Generate Tera List'}
         </button>

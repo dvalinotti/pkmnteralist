@@ -5,4 +5,5 @@ export { TeraRow } from './TeraRow';
 export { TeraCard } from './TeraCard';
 export { ThemeToggle } from './ThemeToggle';
 export { ViewToggle } from './ViewToggle';
+export { ErrorBoundary } from './ErrorBoundary';
 export type { ViewMode } from './ViewToggle';

@@ -31,7 +31,7 @@ export const isPokepastUrl = (input: string): boolean => {
  * Fetches the raw content from a Pokepaste URL.
  * Returns the team text or throws an error.
  */
-export const fetchPokepaste = async (input: string): Promise<string> => {
+export const fetchPokepaste = async (input: string, signal?: AbortSignal): Promise<string> => {
   const pasteId = extractPasteId(input);
 
   if (!pasteId) {
@@ -41,7 +41,7 @@ export const fetchPokepaste = async (input: string): Promise<string> => {
   const rawUrl = `https://pokepast.es/${pasteId}/raw`;
 
   try {
-    const response = await fetch(rawUrl);
+    const response = await fetch(rawUrl, { signal });
 
     if (!response.ok) {
       if (response.status === 404) {

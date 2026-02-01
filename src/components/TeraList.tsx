@@ -106,13 +106,23 @@ export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(
                 className={`${styles.copyBtn} ${copyStatus !== "idle" ? styles.success : ""}`}
                 onClick={handleCopy}
                 disabled={copyStatus !== "idle"}
+                aria-live="polite"
+                aria-label={
+                  copyStatus === "copied"
+                    ? "Copied to clipboard"
+                    : copyStatus === "downloaded"
+                    ? "Downloaded as image"
+                    : "Copy to clipboard"
+                }
               >
                 {copyStatus === "copied" && <CheckIcon />}
                 {copyStatus === "downloaded" && <DownloadIcon />}
                 {copyStatus === "idle" && <ClipboardIcon />}
-                {copyStatus === "copied" && "Copied!"}
-                {copyStatus === "downloaded" && "Downloaded!"}
-                {copyStatus === "idle" && "Copy to Clipboard"}
+                <span aria-hidden={copyStatus !== "idle"}>
+                  {copyStatus === "copied" && "Copied!"}
+                  {copyStatus === "downloaded" && "Downloaded!"}
+                  {copyStatus === "idle" && "Copy to Clipboard"}
+                </span>
               </button>
             </div>
           )}
@@ -125,11 +135,11 @@ export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(
           </p>
         ) : (
           <div className={containerClasses} ref={ref}>
-            {team.map((pokemon, index) =>
+            {team.map((pokemon) =>
               viewMode === "list" ? (
-                <TeraRow key={index} pokemon={pokemon} showOTS={showOTS} showEVs={showEVs} />
+                <TeraRow key={pokemon.name} pokemon={pokemon} showOTS={showOTS} showEVs={showEVs} />
               ) : (
-                <TeraCard key={index} pokemon={pokemon} showOTS={showOTS} showEVs={showEVs} />
+                <TeraCard key={pokemon.name} pokemon={pokemon} showOTS={showOTS} showEVs={showEVs} />
               )
             )}
           </div>
