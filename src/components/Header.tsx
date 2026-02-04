@@ -1,12 +1,12 @@
-import { ThemeToggle } from "./ThemeToggle";
-import styles from "./Header.module.css";
+import { ThemeToggle } from './ThemeToggle';
+import styles from './Header.module.css';
 
 const TeraIcon = () => (
   <svg viewBox="0 0 32 32" className={styles.teraIcon}>
     <defs>
       <linearGradient id="teraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style={{ stopColor: "#667eea" }} />
-        <stop offset="100%" style={{ stopColor: "#764ba2" }} />
+        <stop offset="0%" style={{ stopColor: '#667eea' }} />
+        <stop offset="100%" style={{ stopColor: '#764ba2' }} />
       </linearGradient>
     </defs>
     <polygon points="16,2 28,12 24,28 8,28 4,12" fill="url(#teraGradient)" />

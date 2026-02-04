@@ -1,9 +1,9 @@
-import type { PokemonWithSprite } from "../types";
-import { TERA_TYPE_COLORS } from "../types";
-import { getTeraColor } from "../utils/imageUtils";
-import { formatStatSpread } from "../utils/formatStats";
-import styles from "./TeraCard.module.css";
-import sharedStyles from "../styles/shared.module.css";
+import type { PokemonWithSprite } from '../types';
+import { TERA_TYPE_COLORS } from '../types';
+import { getTeraColor } from '../utils/imageUtils';
+import { formatStatSpread } from '../utils/formatStats';
+import styles from './TeraCard.module.css';
+import sharedStyles from '../styles/shared.module.css';
 
 interface TeraCardProps {
   pokemon: PokemonWithSprite;
@@ -11,15 +11,10 @@ interface TeraCardProps {
   showEVs?: boolean;
 }
 
-export function TeraCard({
-  pokemon,
-  showOTS = false,
-  showEVs = false,
-}: TeraCardProps) {
+export function TeraCard({ pokemon, showOTS = false, showEVs = false }: TeraCardProps) {
   const teraColor = getTeraColor(pokemon.teraType, TERA_TYPE_COLORS);
   // Prefer base64 data URL (works in downloads), fall back to external URL (browser only)
-  const itemSpriteUrl =
-    pokemon.itemSpriteDataUrl || pokemon.itemSpriteFallbackUrl;
+  const itemSpriteUrl = pokemon.itemSpriteDataUrl || pokemon.itemSpriteFallbackUrl;
 
   if (showOTS) {
     return (
@@ -33,9 +28,7 @@ export function TeraCard({
                 className={sharedStyles.pokemonSprite}
               />
             ) : (
-              <div
-                className={`${sharedStyles.pokemonSprite} ${sharedStyles.placeholder}`}
-              />
+              <div className={`${sharedStyles.pokemonSprite} ${sharedStyles.placeholder}`} />
             )}
             <span className={sharedStyles.pokemonName}>{pokemon.name}</span>
             <div className={styles.otsInfo}>
@@ -57,17 +50,12 @@ export function TeraCard({
               {pokemon.ability && (
                 <div className={styles.otsInfoRow}>
                   <span className={styles.otsLabel}>Ability</span>
-                  <span className={sharedStyles.pokemonAbility}>
-                    {pokemon.ability}
-                  </span>
+                  <span className={sharedStyles.pokemonAbility}>{pokemon.ability}</span>
                 </div>
               )}
               <div className={styles.otsInfoRow}>
                 <span className={styles.otsLabel}>Tera</span>
-                <div
-                  className={sharedStyles.teraBadge}
-                  style={{ backgroundColor: teraColor }}
-                >
+                <div className={sharedStyles.teraBadge} style={{ backgroundColor: teraColor }}>
                   {pokemon.typeIconDataUrl && (
                     <img
                       src={pokemon.typeIconDataUrl}
@@ -93,9 +81,7 @@ export function TeraCard({
         {showEVs && (
           <div className={styles.otsBottom}>
             {pokemon.nature && (
-              <span className={sharedStyles.pokemonNature}>
-                {pokemon.nature} Nature
-              </span>
+              <span className={sharedStyles.pokemonNature}>{pokemon.nature} Nature</span>
             )}
             <span className={sharedStyles.pokemonStats}>
               EVs: {formatStatSpread(pokemon.evs, true)}
@@ -118,15 +104,10 @@ export function TeraCard({
           className={sharedStyles.pokemonSprite}
         />
       ) : (
-        <div
-          className={`${sharedStyles.pokemonSprite} ${sharedStyles.placeholder}`}
-        />
+        <div className={`${sharedStyles.pokemonSprite} ${sharedStyles.placeholder}`} />
       )}
       <span className={sharedStyles.pokemonName}>{pokemon.name}</span>
-      <div
-        className={sharedStyles.teraBadge}
-        style={{ backgroundColor: teraColor }}
-      >
+      <div className={sharedStyles.teraBadge} style={{ backgroundColor: teraColor }}>
         {pokemon.typeIconDataUrl && (
           <img
             src={pokemon.typeIconDataUrl}

@@ -1,4 +1,4 @@
-import styles from "./TeamInput.module.css";
+import styles from './TeamInput.module.css';
 
 interface TeamInputProps {
   value: string;
@@ -24,8 +24,15 @@ Examples:
   - Grass Knot
   - Volt Switch`;
 
-export function TeamInput({ value, onChange, onGenerate, onClear, isLoading, error }: TeamInputProps) {
-  const errorId = error ? "team-input-error" : undefined;
+export function TeamInput({
+  value,
+  onChange,
+  onGenerate,
+  onClear,
+  isLoading,
+  error,
+}: TeamInputProps) {
+  const errorId = error ? 'team-input-error' : undefined;
 
   return (
     <div className={styles.inputSection}>

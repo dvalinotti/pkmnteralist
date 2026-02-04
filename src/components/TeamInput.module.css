@@ -33,7 +33,7 @@
   border-radius: 8px;
   background-color: var(--bg-input);
   color: var(--text-primary);
-  font-family: "Courier New", monospace;
+  font-family: 'Courier New', monospace;
   font-size: 0.9rem;
   resize: vertical;
   box-sizing: border-box;
@@ -63,7 +63,9 @@
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .generateBtn:hover:not(:disabled) {
@@ -85,7 +87,9 @@
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
 }
 
 .clearBtn:hover {

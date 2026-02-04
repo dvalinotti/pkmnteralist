@@ -1,5 +1,5 @@
-import { useTheme } from "../context/ThemeContext";
-import styles from "./ThemeToggle.module.css";
+import { useTheme } from '../context/ThemeContext';
+import styles from './ThemeToggle.module.css';
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
@@ -8,9 +8,9 @@ export function ThemeToggle() {
     <button
       className={styles.iconButton}
       onClick={toggleTheme}
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
     >
-      {theme === "dark" ? (
+      {theme === 'dark' ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
