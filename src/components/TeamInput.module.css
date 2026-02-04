@@ -17,21 +17,21 @@
 }
 
 .importError {
-  color: #e53e3e;
+  color: var(--color-error);
   font-size: 0.85rem;
   margin: 0;
-  padding: 0.5rem 0.75rem;
+  padding: var(--spacing-sm) 0.75rem;
   background-color: rgba(229, 62, 62, 0.1);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
 
 .inputWarning {
-  color: #d69e2e;
+  color: var(--color-warning);
   font-size: 0.85rem;
   margin: 0;
-  padding: 0.5rem 0.75rem;
+  padding: var(--spacing-sm) 0.75rem;
   background-color: rgba(214, 158, 46, 0.1);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
 
 .teamInput {
@@ -39,7 +39,7 @@
   min-height: 200px;
   padding: 1rem;
   border: 2px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background-color: var(--bg-input);
   color: var(--text-primary);
   font-family: 'Courier New', monospace;
@@ -50,7 +50,7 @@
 
 .teamInput:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--color-primary);
 }
 
 .teamInput::placeholder {
@@ -64,13 +64,13 @@
 }
 
 .generateBtn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   color: white;
   border: none;
   padding: 0.8rem 2rem;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition:
     transform 0.2s,
@@ -79,7 +79,7 @@
 
 .generateBtn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.4);
 }
 
 .generateBtn:disabled {
@@ -94,7 +94,7 @@
   padding: 0.8rem 2rem;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition:
     border-color 0.2s,

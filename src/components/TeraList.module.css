@@ -1,6 +1,6 @@
 .resultsSection {
   background-color: var(--bg-secondary);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
   border: 1px solid var(--border-color);
   width: 100%;
@@ -42,7 +42,7 @@
   width: 16px;
   height: 16px;
   cursor: pointer;
-  accent-color: #667eea;
+  accent-color: var(--color-primary);
 }
 
 .copyBtn {
@@ -55,7 +55,7 @@
   padding: 0.5rem 1rem;
   font-size: 0.85rem;
   font-weight: 500;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition:
     background-color 0.2s,
@@ -65,7 +65,7 @@
 
 .copyBtn:hover {
   background-color: var(--btn-secondary-bg-hover);
-  border-color: #667eea;
+  border-color: var(--color-primary);
 }
 
 .copyBtn.success {
@@ -89,7 +89,7 @@
 .teraContainer {
   padding: 1rem;
   background-color: var(--bg-secondary);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   margin: 0 auto;
 }
 

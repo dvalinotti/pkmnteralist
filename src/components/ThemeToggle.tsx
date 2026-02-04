@@ -1,12 +1,12 @@
 import { useTheme } from '../context/ThemeContext';
-import styles from './ThemeToggle.module.css';
+import sharedStyles from '../styles/shared.module.css';
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <button
-      className={styles.iconButton}
+      className={sharedStyles.iconButton}
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
     >
@@ -35,8 +35,8 @@ export function ThemeToggle() {
       ) : (
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          width='20'
-          height='20'
+          width='24'
+          height='24'
           viewBox='0 0 24 24'
           fill='none'
           stroke='currentColor'

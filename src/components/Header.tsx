@@ -1,6 +1,7 @@
 import { ThemeToggle } from './ThemeToggle';
 import { TeraIcon, GithubIcon } from '../icons';
 import styles from './Header.module.css';
+import sharedStyles from '../styles/shared.module.css';
 
 export function Header() {
   return (
@@ -15,7 +16,7 @@ export function Header() {
             href='https://github.com/dvalinotti/pkmnteralist'
             target='_blank'
             rel='noopener noreferrer'
-            className={styles.iconButton}
+            className={sharedStyles.iconButton}
           >
             <GithubIcon className={styles.githubIcon} />
           </a>
