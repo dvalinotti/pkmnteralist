@@ -4,7 +4,14 @@ export const loadImageAsDataUrl = async (url: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.crossOrigin = 'anonymous';
+
+    const cleanup = () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+
     img.onload = () => {
+      cleanup();
       const canvas = document.createElement('canvas');
       canvas.width = img.width;
       canvas.height = img.height;
@@ -16,7 +23,12 @@ export const loadImageAsDataUrl = async (url: string): Promise<string> => {
         reject(new Error('Could not get canvas context'));
       }
     };
-    img.onerror = () => reject(new Error(`Failed to load image: ${url}`));
+
+    img.onerror = () => {
+      cleanup();
+      reject(new Error(`Failed to load image: ${url}`));
+    };
+
     img.src = url;
   });
 };
