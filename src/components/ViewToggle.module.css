@@ -5,7 +5,7 @@
   padding: 0.5rem 0.75rem;
   font-size: 0.85rem;
   font-weight: 500;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@
 
 .viewToggle:hover {
   background-color: var(--btn-secondary-bg-hover);
-  border-color: #667eea;
+  border-color: var(--color-primary);
 }
 
 @media (max-width: 600px) {

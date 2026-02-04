@@ -6,7 +6,7 @@
   gap: 0.5rem;
   padding: 0.75rem;
   background-color: var(--bg-tertiary);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
   transition:
     transform 0.2s,
@@ -15,7 +15,7 @@
 
 .teraCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 8px 16px rgba(var(--color-primary-rgb), 0.2);
 }
 
 .teraCard .pokemonSprite {
