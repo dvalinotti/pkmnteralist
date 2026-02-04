@@ -32,11 +32,7 @@ export function TeraRow({ pokemon, showOTS = false, showEVs = false }: TeraRowPr
         {showOTS && pokemon.item && (
           <span className={sharedStyles.pokemonItem}>
             {itemSpriteUrl && (
-              <img
-                src={itemSpriteUrl}
-                alt={pokemon.item}
-                className={sharedStyles.itemSprite}
-              />
+              <img src={itemSpriteUrl} alt={pokemon.item} className={sharedStyles.itemSprite} />
             )}
             {pokemon.item}
           </span>
@@ -58,17 +54,18 @@ export function TeraRow({ pokemon, showOTS = false, showEVs = false }: TeraRowPr
                 {pokemon.nature && (
                   <div className={sharedStyles.pokemonNature}>{pokemon.nature} Nature</div>
                 )}
-                <div className={sharedStyles.pokemonStats}>EVs: {formatStatSpread(pokemon.evs, true)}</div>
-                <div className={sharedStyles.pokemonStats}>IVs: {formatStatSpread(pokemon.ivs, false)}</div>
+                <div className={sharedStyles.pokemonStats}>
+                  EVs: {formatStatSpread(pokemon.evs, true)}
+                </div>
+                <div className={sharedStyles.pokemonStats}>
+                  IVs: {formatStatSpread(pokemon.ivs, false)}
+                </div>
               </div>
             )}
           </div>
         )}
       </div>
-      <div
-        className={sharedStyles.teraBadge}
-        style={{ backgroundColor: teraColor }}
-      >
+      <div className={sharedStyles.teraBadge} style={{ backgroundColor: teraColor }}>
         {pokemon.typeIconDataUrl && (
           <img
             src={pokemon.typeIconDataUrl}

@@ -35,7 +35,7 @@ export const fetchPokepaste = async (input: string, signal?: AbortSignal): Promi
   const pasteId = extractPasteId(input);
 
   if (!pasteId) {
-    throw new Error("Invalid Pokepaste URL");
+    throw new Error('Invalid Pokepaste URL');
   }
 
   const rawUrl = `https://pokepast.es/${pasteId}/raw`;
@@ -45,7 +45,7 @@ export const fetchPokepaste = async (input: string, signal?: AbortSignal): Promi
 
     if (!response.ok) {
       if (response.status === 404) {
-        throw new Error("Paste not found. Check the URL and try again.");
+        throw new Error('Paste not found. Check the URL and try again.');
       }
       throw new Error(`Failed to fetch paste: ${response.status}`);
     }
@@ -53,16 +53,16 @@ export const fetchPokepaste = async (input: string, signal?: AbortSignal): Promi
     const text = await response.text();
 
     if (!text.trim()) {
-      throw new Error("Paste is empty");
+      throw new Error('Paste is empty');
     }
 
     return text;
   } catch (error) {
-    if (error instanceof TypeError && error.message.includes("fetch")) {
+    if (error instanceof TypeError && error.message.includes('fetch')) {
       // CORS or network error
       throw new Error(
-        "Unable to fetch paste. This may be due to browser restrictions. " +
-        "Try copying the team text directly from Pokepaste instead."
+        'Unable to fetch paste. This may be due to browser restrictions. ' +
+          'Try copying the team text directly from Pokepaste instead.'
       );
     }
     throw error;

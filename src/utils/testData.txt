@@ -566,3 +566,18 @@ Tera Type: Fighting
 Zamazenta-Crowned @ Rusted Sword  
 Ability: Intrepid Sword  
 Tera Type: Fairy  
+
+Tatsugiri  
+Ability: Commander  
+Level: 50  
+Tera Type: Dragon  
+
+Tatsugiri-Droopy  
+Ability: Commander  
+Level: 50  
+Tera Type: Dragon  
+
+Tatsugiri-Stretchy  
+Ability: Commander  
+Level: 50  
+Tera Type: Dragon  

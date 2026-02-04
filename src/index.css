@@ -31,7 +31,7 @@
   background-color: var(--bg-primary);
 }
 
-[data-theme="light"] {
+[data-theme='light'] {
   --bg-primary: #f5f5f5;
   --bg-secondary: #ffffff;
   --bg-tertiary: #f0f0f0;
@@ -65,7 +65,12 @@ body {
   min-height: 100vh;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
 

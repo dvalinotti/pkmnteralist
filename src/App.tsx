@@ -1,27 +1,28 @@
-import { useState, useRef, useEffect } from "react";
-import html2canvas from "html2canvas";
-import { parseTeam } from "./utils/parseTeam";
+import { useState, useRef, useEffect } from 'react';
+import html2canvas from 'html2canvas';
+import { parseTeam } from './utils/parseTeam';
 import {
   loadImageAsDataUrl,
   fetchPokemonSprite,
   getTypeIconUrl,
   fetchItemSprite,
-} from "./utils/imageUtils";
-import { isPokepastUrl, fetchPokepaste } from "./utils/pokepaste";
-import { Header, TeamInput, TeraList } from "./components";
-import type { ViewMode } from "./components";
-import type { PokemonWithSprite } from "./types";
-import { useTheme } from "./context/ThemeContext";
-import styles from "./App.module.css";
-import { Footer } from "./components/Footer";
+} from './utils/imageUtils';
+import { isPokepastUrl, fetchPokepaste } from './utils/pokepaste';
+import { Header, TeamInput, TeraList } from './components';
+import type { ViewMode } from './components';
+import type { PokemonWithSprite } from './types';
+import { useTheme } from './context/ThemeContext';
+import { THEME_BACKGROUNDS, CANVAS_EXPORT_SCALE, DOWNLOAD_FILENAME } from './constants';
+import styles from './App.module.css';
+import { Footer } from './components/Footer';
 
 function App() {
-  const [teamText, setTeamText] = useState("");
+  const [teamText, setTeamText] = useState('');
   const [parsedTeam, setParsedTeam] = useState<PokemonWithSprite[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<ViewMode>("grid");
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [showOTS, setShowOTS] = useState(false);
   const [showEVs, setShowEVs] = useState(false);
   const teraListRef = useRef<HTMLDivElement>(null);
@@ -54,7 +55,7 @@ function App() {
         setTeamText(textToParse); // Update textarea with fetched content
       } catch (err) {
         if (signal.aborted) return;
-        setError(err instanceof Error ? err.message : "Failed to fetch paste");
+        setError(err instanceof Error ? err.message : 'Failed to fetch paste');
         setIsLoading(false);
         return;
       }
@@ -73,7 +74,7 @@ function App() {
     try {
       const teamWithSprites: PokemonWithSprite[] = await Promise.all(
         team.map(async (pokemon) => {
-          let spriteDataUrl = "";
+          let spriteDataUrl = '';
           let typeIconDataUrl: string | null = null;
 
           const spriteUrl = await fetchPokemonSprite(pokemon.name, signal);
@@ -81,7 +82,7 @@ function App() {
             try {
               spriteDataUrl = await loadImageAsDataUrl(spriteUrl);
             } catch {
-              spriteDataUrl = "";
+              spriteDataUrl = '';
             }
           }
 
@@ -126,7 +127,7 @@ function App() {
   };
 
   const handleClear = () => {
-    setTeamText("");
+    setTeamText('');
     setParsedTeam([]);
     setShowResults(false);
     setError(null);
@@ -138,7 +139,7 @@ function App() {
   };
 
   const handleViewToggle = () => {
-    setViewMode((prev) => (prev === "list" ? "grid" : "list"));
+    setViewMode((prev) => (prev === 'list' ? 'grid' : 'list'));
   };
 
   const handleOTSToggle = () => {
@@ -149,17 +150,17 @@ function App() {
     setShowEVs((prev) => !prev);
   };
 
-  const handleCopyToClipboard = (): Promise<boolean | "downloaded"> => {
+  const handleCopyToClipboard = (): Promise<boolean | 'downloaded'> => {
     if (!teraListRef.current) return Promise.resolve(false);
 
-    const backgroundColor = theme === "dark" ? "#1a1a1a" : "#ffffff";
+    const backgroundColor = THEME_BACKGROUNDS[theme];
     const element = teraListRef.current;
 
     // Create a promise that resolves to a blob - this allows Safari to work
     // by passing the promise directly to ClipboardItem
     const blobPromise = html2canvas(element, {
       backgroundColor,
-      scale: 2,
+      scale: CANVAS_EXPORT_SCALE,
     }).then(
       (canvas) =>
         new Promise<Blob>((resolve, reject) => {
@@ -167,9 +168,9 @@ function App() {
             if (blob) {
               resolve(blob);
             } else {
-              reject(new Error("Failed to create blob"));
+              reject(new Error('Failed to create blob'));
             }
-          }, "image/png");
+          }, 'image/png');
         })
     );
 
@@ -178,24 +179,24 @@ function App() {
     return navigator.clipboard
       .write([
         new ClipboardItem({
-          "image/png": blobPromise,
+          'image/png': blobPromise,
         }),
       ])
       .then(() => true)
       .catch(async (err) => {
-        console.error("Clipboard copy failed, falling back to download:", err);
+        console.error('Clipboard copy failed, falling back to download:', err);
         // Fallback: download the image instead
         try {
           const blob = await blobPromise;
           const url = URL.createObjectURL(blob);
-          const link = document.createElement("a");
+          const link = document.createElement('a');
           link.href = url;
-          link.download = "tera-list.png";
+          link.download = DOWNLOAD_FILENAME;
           link.click();
           URL.revokeObjectURL(url);
-          return "downloaded" as const;
+          return 'downloaded' as const;
         } catch (downloadErr) {
-          console.error("Download fallback also failed:", downloadErr);
+          console.error('Download fallback also failed:', downloadErr);
           return false;
         }
       });

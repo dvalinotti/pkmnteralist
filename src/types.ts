@@ -27,14 +27,30 @@ export interface PokemonWithSprite extends Pokemon {
 }
 
 export const TERA_TYPES = [
-  'Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice',
-  'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug',
-  'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy', 'Stellar'
+  'Normal',
+  'Fire',
+  'Water',
+  'Electric',
+  'Grass',
+  'Ice',
+  'Fighting',
+  'Poison',
+  'Ground',
+  'Flying',
+  'Psychic',
+  'Bug',
+  'Rock',
+  'Ghost',
+  'Dragon',
+  'Dark',
+  'Steel',
+  'Fairy',
+  'Stellar',
 ] as const;
 
-export type TeraType = typeof TERA_TYPES[number];
+export type TeraType = (typeof TERA_TYPES)[number];
 
-export const TERA_TYPE_COLORS: Record<string, string> = {
+export const TERA_TYPE_COLORS: Record<TeraType, string> = {
   Normal: '#A8A878',
   Fire: '#F08030',
   Water: '#6890F0',

@@ -1,6 +1,6 @@
-import { Component } from "react";
-import type { ReactNode, ErrorInfo } from "react";
-import styles from "./ErrorBoundary.module.css";
+import { Component } from 'react';
+import type { ReactNode, ErrorInfo } from 'react';
+import styles from './ErrorBoundary.module.css';
 
 interface Props {
   children: ReactNode;
@@ -23,7 +23,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     // Log error to console in development
-    console.error("ErrorBoundary caught an error:", error, errorInfo);
+    console.error('ErrorBoundary caught an error:', error, errorInfo);
   }
 
   handleReset = (): void => {

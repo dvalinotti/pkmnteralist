@@ -8,7 +8,9 @@
   background-color: var(--bg-tertiary);
   border-radius: 12px;
   border: 1px solid var(--border-color);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .teraCard:hover {
