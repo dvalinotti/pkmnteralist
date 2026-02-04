@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import html2canvas from "html2canvas";
 import { parseTeam } from "./utils/parseTeam";
 import {
@@ -25,9 +25,23 @@ function App() {
   const [showOTS, setShowOTS] = useState(false);
   const [showEVs, setShowEVs] = useState(false);
   const teraListRef = useRef<HTMLDivElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
   const { theme } = useTheme();
 
+  // Cleanup abort controller on unmount
+  useEffect(() => {
+    return () => {
+      abortControllerRef.current?.abort();
+    };
+  }, []);
+
   const handleGenerate = async () => {
+    // Cancel any in-flight requests from previous generation
+    abortControllerRef.current?.abort();
+    const abortController = new AbortController();
+    abortControllerRef.current = abortController;
+    const signal = abortController.signal;
+
     setError(null);
 
     // Check if input is a Pokepaste URL
@@ -35,9 +49,11 @@ function App() {
     if (isPokepastUrl(teamText.trim())) {
       try {
         setIsLoading(true);
-        textToParse = await fetchPokepaste(teamText.trim());
+        textToParse = await fetchPokepaste(teamText.trim(), signal);
+        if (signal.aborted) return;
         setTeamText(textToParse); // Update textarea with fetched content
       } catch (err) {
+        if (signal.aborted) return;
         setError(err instanceof Error ? err.message : "Failed to fetch paste");
         setIsLoading(false);
         return;
@@ -54,50 +70,59 @@ function App() {
     setIsLoading(true);
     setShowResults(true);
 
-    const teamWithSprites: PokemonWithSprite[] = await Promise.all(
-      team.map(async (pokemon) => {
-        let spriteDataUrl = "";
-        let typeIconDataUrl: string | null = null;
+    try {
+      const teamWithSprites: PokemonWithSprite[] = await Promise.all(
+        team.map(async (pokemon) => {
+          let spriteDataUrl = "";
+          let typeIconDataUrl: string | null = null;
 
-        const spriteUrl = await fetchPokemonSprite(pokemon.name);
-        if (spriteUrl) {
-          try {
-            spriteDataUrl = await loadImageAsDataUrl(spriteUrl);
-          } catch {
-            spriteDataUrl = "";
+          const spriteUrl = await fetchPokemonSprite(pokemon.name, signal);
+          if (spriteUrl && !signal.aborted) {
+            try {
+              spriteDataUrl = await loadImageAsDataUrl(spriteUrl);
+            } catch {
+              spriteDataUrl = "";
+            }
           }
-        }
 
-        const typeIconUrl = getTypeIconUrl(pokemon.teraType);
-        if (typeIconUrl) {
-          try {
-            typeIconDataUrl = await loadImageAsDataUrl(typeIconUrl);
-          } catch {
-            typeIconDataUrl = null;
+          const typeIconUrl = getTypeIconUrl(pokemon.teraType);
+          if (typeIconUrl && !signal.aborted) {
+            try {
+              typeIconDataUrl = await loadImageAsDataUrl(typeIconUrl);
+            } catch {
+              typeIconDataUrl = null;
+            }
           }
-        }
 
-        // Fetch item sprite - tries PokeAPI (CORS-enabled) first, falls back to Serebii
-        let itemSpriteDataUrl: string | null = null;
-        let itemSpriteFallbackUrl: string | null = null;
-        if (pokemon.item) {
-          const itemSprite = await fetchItemSprite(pokemon.item);
-          itemSpriteDataUrl = itemSprite.dataUrl;
-          itemSpriteFallbackUrl = itemSprite.fallbackUrl;
-        }
+          // Fetch item sprite - tries PokeAPI (CORS-enabled) first, falls back to Serebii
+          let itemSpriteDataUrl: string | null = null;
+          let itemSpriteFallbackUrl: string | null = null;
+          if (pokemon.item && !signal.aborted) {
+            const itemSprite = await fetchItemSprite(pokemon.item);
+            itemSpriteDataUrl = itemSprite.dataUrl;
+            itemSpriteFallbackUrl = itemSprite.fallbackUrl;
+          }
 
-        return {
-          ...pokemon,
-          spriteDataUrl,
-          typeIconDataUrl,
-          itemSpriteDataUrl,
-          itemSpriteFallbackUrl,
-        };
-      })
-    );
+          return {
+            ...pokemon,
+            spriteDataUrl,
+            typeIconDataUrl,
+            itemSpriteDataUrl,
+            itemSpriteFallbackUrl,
+          };
+        })
+      );
 
-    setParsedTeam(teamWithSprites);
-    setIsLoading(false);
+      if (signal.aborted) return;
+      setParsedTeam(teamWithSprites);
+    } catch {
+      if (signal.aborted) return;
+      // Silently handle abort errors
+    } finally {
+      if (!signal.aborted) {
+        setIsLoading(false);
+      }
+    }
   };
 
   const handleClear = () => {

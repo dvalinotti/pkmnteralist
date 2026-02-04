@@ -1,6 +1,7 @@
 import type { PokemonWithSprite } from "../types";
 import { TERA_TYPE_COLORS } from "../types";
 import { getTeraColor } from "../utils/imageUtils";
+import { formatStatSpread } from "../utils/formatStats";
 import styles from "./TeraCard.module.css";
 import sharedStyles from "../styles/shared.module.css";
 
@@ -9,39 +10,6 @@ interface TeraCardProps {
   showOTS?: boolean;
   showEVs?: boolean;
 }
-
-const formatStatSpread = (
-  stats: {
-    hp: number;
-    atk: number;
-    def: number;
-    spa: number;
-    spd: number;
-    spe: number;
-  },
-  isEV: boolean
-): string => {
-  const statNames = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"];
-  const statValues = [
-    stats.hp,
-    stats.atk,
-    stats.def,
-    stats.spa,
-    stats.spd,
-    stats.spe,
-  ];
-  const defaultValue = isEV ? 0 : 31;
-
-  const nonDefault = statValues
-    .map((val, i) => ({ name: statNames[i], val }))
-    .filter(({ val }) => val !== defaultValue);
-
-  if (nonDefault.length === 0) {
-    return isEV ? "None" : "All 31";
-  }
-
-  return nonDefault.map(({ name, val }) => `${val} ${name}`).join(" / ");
-};
 
 export function TeraCard({
   pokemon,
@@ -115,8 +83,8 @@ export function TeraCard({
           <div className={styles.otsRight}>
             {pokemon.moves.length > 0 && (
               <ul className={sharedStyles.pokemonMoves}>
-                {pokemon.moves.map((move, idx) => (
-                  <li key={idx}>{move}</li>
+                {pokemon.moves.map((move) => (
+                  <li key={move}>{move}</li>
                 ))}
               </ul>
             )}

@@ -97,14 +97,16 @@ const normalizeForPokeAPI = (name: string): string => {
  * Returns the front_default sprite from the API response.
  */
 export const fetchPokemonSprite = async (
-  pokemonName: string
+  pokemonName: string,
+  signal?: AbortSignal
 ): Promise<string | null> => {
   const normalized = normalizeForPokeAPI(pokemonName);
 
   try {
     // Query PokeAPI to get Pokemon data
     const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${normalized}`
+      `https://pokeapi.co/api/v2/pokemon/${normalized}`,
+      { signal }
     );
     if (response.ok) {
       const data = await response.json();
@@ -117,7 +119,8 @@ export const fetchPokemonSprite = async (
       // Check if the base name has a mapping
       const mappedBase = BASE_FORM_TO_POKEAPI[baseName] || baseName;
       const baseResponse = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${mappedBase}`
+        `https://pokeapi.co/api/v2/pokemon/${mappedBase}`,
+        { signal }
       );
       if (baseResponse.ok) {
         const data = await baseResponse.json();
