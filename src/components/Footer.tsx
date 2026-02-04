@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
     <footer className={styles.footer}>
       <span>
         © {new Date().getFullYear()} |{' Dan Valinotti '}
-        <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+        <a href={GITHUB_URL} target='_blank' rel='noopener noreferrer'>
           GitHub
         </a>
       </span>

@@ -12,6 +12,7 @@ import { Header, TeamInput, TeraList } from './components';
 import type { ViewMode } from './components';
 import type { PokemonWithSprite } from './types';
 import { useTheme } from './context/ThemeContext';
+import { THEME_BACKGROUNDS, CANVAS_EXPORT_SCALE, DOWNLOAD_FILENAME } from './constants';
 import styles from './App.module.css';
 import { Footer } from './components/Footer';
 
@@ -152,14 +153,14 @@ function App() {
   const handleCopyToClipboard = (): Promise<boolean | 'downloaded'> => {
     if (!teraListRef.current) return Promise.resolve(false);
 
-    const backgroundColor = theme === 'dark' ? '#1a1a1a' : '#ffffff';
+    const backgroundColor = THEME_BACKGROUNDS[theme];
     const element = teraListRef.current;
 
     // Create a promise that resolves to a blob - this allows Safari to work
     // by passing the promise directly to ClipboardItem
     const blobPromise = html2canvas(element, {
       backgroundColor,
-      scale: 2,
+      scale: CANVAS_EXPORT_SCALE,
     }).then(
       (canvas) =>
         new Promise<Blob>((resolve, reject) => {
@@ -190,7 +191,7 @@ function App() {
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'tera-list.png';
+          link.download = DOWNLOAD_FILENAME;
           link.click();
           URL.revokeObjectURL(url);
           return 'downloaded' as const;

@@ -25,6 +25,15 @@
   border-radius: 6px;
 }
 
+.inputWarning {
+  color: #d69e2e;
+  font-size: 0.85rem;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(214, 158, 46, 0.1);
+  border-radius: 6px;
+}
+
 .teamInput {
   width: 100%;
   min-height: 200px;

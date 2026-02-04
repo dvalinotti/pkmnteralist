@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+import { validateTeamInput } from '../utils/validateInput';
 import styles from './TeamInput.module.css';
 
 interface TeamInputProps {
@@ -32,26 +34,33 @@ export function TeamInput({
   isLoading,
   error,
 }: TeamInputProps) {
+  const validation = useMemo(() => validateTeamInput(value), [value]);
   const errorId = error ? 'team-input-error' : undefined;
+  const warningId = validation.warning ? 'team-input-warning' : undefined;
 
   return (
     <div className={styles.inputSection}>
-      <label htmlFor="team-input" className={styles.visuallyHidden}>
+      <label htmlFor='team-input' className={styles.visuallyHidden}>
         Pokemon team data
       </label>
       <textarea
-        id="team-input"
+        id='team-input'
         className={styles.teamInput}
         placeholder={PLACEHOLDER_TEXT}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        aria-label="Paste your Pokemon Showdown team or Pokepaste URL"
-        aria-describedby={errorId}
+        aria-label='Paste your Pokemon Showdown team or Pokepaste URL'
+        aria-describedby={[errorId, warningId].filter(Boolean).join(' ') || undefined}
         aria-invalid={!!error}
       />
       {error && (
-        <p id="team-input-error" className={styles.importError} role="alert">
+        <p id='team-input-error' className={styles.importError} role='alert'>
           {error}
+        </p>
+      )}
+      {!error && validation.warning && (
+        <p id='team-input-warning' className={styles.inputWarning}>
+          {validation.warning}
         </p>
       )}
       <div className={styles.buttonGroup}>

@@ -142,6 +142,7 @@ export const fetchPokemonSprite = async (
   }
 };
 
+// Standard Pokemon types that have icon SVGs available (excludes Stellar)
 const VALID_TYPES = [
   'bug',
   'dark',
@@ -161,11 +162,11 @@ const VALID_TYPES = [
   'rock',
   'steel',
   'water',
-];
+] as const;
 
 export const getTypeIconUrl = (teraType: string): string | null => {
   const normalizedType = teraType.toLowerCase();
-  if (VALID_TYPES.includes(normalizedType)) {
+  if ((VALID_TYPES as readonly string[]).includes(normalizedType)) {
     return `https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/master/icons/${normalizedType}.svg`;
   }
   return null;
