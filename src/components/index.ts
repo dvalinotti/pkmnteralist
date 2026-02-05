@@ -6,4 +6,5 @@ export { TeraCard } from './TeraCard';
 export { ThemeToggle } from './ThemeToggle';
 export { ViewToggle } from './ViewToggle';
 export { ErrorBoundary } from './ErrorBoundary';
+export { StatGrid } from './StatGrid';
 export type { ViewMode } from './ViewToggle';

@@ -58,7 +58,7 @@ export const TeraList = forwardRef<HTMLDivElement, TeraListProps>(function TeraL
     .join(' ');
 
   return (
-    <div className={styles.resultsSection}>
+    <div className={`${styles.resultsSection} ${showOTS ? styles.fullOts : ''}`}>
       <div className={styles.resultsHeader}>
         <h2>{showOTS ? 'Open Team Sheet' : 'Team Tera Types'}</h2>
         {team.length > 0 && !isLoading && (

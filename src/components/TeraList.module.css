@@ -8,6 +8,10 @@
   margin: 0 auto;
 }
 
+.resultsSection.fullOts {
+  max-width: 768px;
+}
+
 .resultsHeader {
   display: flex;
   justify-content: space-between;
